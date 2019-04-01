@@ -21,6 +21,8 @@
     "testModule": "tests/main.js"
   },
   "devDependencies": {
-    "eslint": "^5.16.0"
+    "eslint": "^5.16.0",
+    "eslint-plugin-react": "^7.12.4",
+    "prettier": "1.16.4"
   }
 }
