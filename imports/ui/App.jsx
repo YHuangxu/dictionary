@@ -1,5 +1,5 @@
 import React from "react";
-import SearchBox from "./Search.jsx";
+import SearchBar from "./Search.jsx";
 import { Container } from "semantic-ui-react";
 
 
@@ -8,7 +8,7 @@ export default class App extends React.Component {
 		return (
 			<Container>
 				<h1>Welcome to Meteor!</h1>
-				<SearchBox />
+				<SearchBar />
 			</Container>
 		);
 	}

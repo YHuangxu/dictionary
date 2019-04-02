@@ -1,21 +1,37 @@
 import React from "react";
-import { Input } from "semantic-ui-react";
+import { Input, Form } from "semantic-ui-react";
 import RegisterModal from "./RegisterModal.jsx";
-export default class App extends React.Component {
+
+export default class SearchBar extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+			word: "",
 			isOpen: false
 		};
 	}
+
+	onFormSubmit(event) {
+		event.preventDefault();
+		console.log(this.state.word);
+	}
+
 	render() {
 		return (
 			<div>
-				<Input 
-					fluid 
-					icon="search" 
-					placeholder="Search..."
-				/>
+				<Form onSubmit={this.onFormSubmit.bind(this)}>
+					<Form.Field>
+						<label>Search a word</label>
+						<Input
+							value={this.state.word}
+							onChange={e => this.setState({word: e.target.value})}
+							fluid
+							icon="search"
+							placeholder="Search..."
+						/>
+					</Form.Field>
+				</Form>
+
 				<RegisterModal />
 			</div>
 		);
