@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { Input, Form } from "semantic-ui-react";
 import RegisterModal from "./RegisterModal.jsx";
 
@@ -13,7 +14,8 @@ export default class SearchBar extends React.Component {
 
 	onFormSubmit(event) {
 		event.preventDefault();
-		console.log(this.state.word);
+		
+		this.props.onSubmit(this.state.word);
 	}
 
 	render() {
@@ -37,3 +39,7 @@ export default class SearchBar extends React.Component {
 		);
 	}
 }
+
+SearchBar.propTypes = {
+	onSubmit: PropTypes.func.isRequired
+};
