@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Input, Form } from "semantic-ui-react";
-import RegisterModal from "./RegisterModal.jsx";
 
 export default class SearchBar extends React.Component {
 	constructor(props) {
@@ -35,7 +34,6 @@ export default class SearchBar extends React.Component {
 					</Form.Field>
 				</Form>
 
-				<RegisterModal />
 			</div>
 		);
 	}
