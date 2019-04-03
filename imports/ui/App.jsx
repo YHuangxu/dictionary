@@ -29,8 +29,6 @@ export default class App extends React.Component {
 
 				<h1>Welcome to Meteor!</h1>
 
-				<SearchBar />
-
 				<SearchBar onSubmit={this.onSearchSubmit.bind(this)} />
 
 				<WordsList words={this.state.words} />
