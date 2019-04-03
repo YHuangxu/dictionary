@@ -1,7 +1,7 @@
 import React from "react";
 import { Container } from "semantic-ui-react";
 
-import Header from "./Header.jsx";
+import NavigationBar from "./NavigationBar.jsx";
 import SearchBar from "./Search.jsx";
 
 import WordsList from "./WordsList";
@@ -25,7 +25,7 @@ export default class App extends React.Component {
 	render() {
 		return (
 			<Container>
-				<Header />
+				<NavigationBar />
 
 				<h1>LOGO PLACE!</h1>
 

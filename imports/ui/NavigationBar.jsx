@@ -4,7 +4,7 @@ import { Meteor } from "meteor/meteor";
 import Lonin from "./Login.jsx";
 import { Accounts } from "meteor/accounts-base";
 
-export default class MenuExampleSizeSmall extends Component {
+export default class NavigationBar extends Component {
 	constructor(props) {
 		super(props);
 		this.loginRef = React.createRef();
