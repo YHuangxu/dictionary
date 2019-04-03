@@ -41,6 +41,7 @@ export default class MenuExampleSizeSmall extends Component {
 								<Dropdown.Item icon="folder" text="My Lists" />
 								<Dropdown.Divider />
 								<Dropdown.Item
+									icon="log out"
 									text="Log Out"
 									onClick={this.onLogout.bind(this)}
 								/>
