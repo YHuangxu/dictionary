@@ -16,7 +16,6 @@ export default class Login extends Component {
 		};
 	}
 
-
 	onLogin() {
 		const username = document.querySelector("#username").value.trim();
 		const password = document.querySelector("#password").value.trim();
@@ -78,7 +77,7 @@ export default class Login extends Component {
 		);
 	}
 
-	onLoginSuccess(method, response) {
+	onLoginSuccess(method) {
 		this.closeModal();
 		this.setState({
 			loggedIn: method,
