@@ -5,7 +5,7 @@ import Header from "./Header.jsx";
 import SearchBar from "./Search.jsx";
 
 import WordsList from "./WordsList";
-import wordAPI from "../api/wordAPI";
+import wordsAPI from "../api/wordsAPI";
 
 
 export default class App extends React.Component {
@@ -17,7 +17,7 @@ export default class App extends React.Component {
 	}
 
 	onSearchSubmit(word) {
-		wordAPI
+		wordsAPI
 			.get(`words/${word}`)
 			.then(res => this.setState({ words: res.data.results }));
 	}
