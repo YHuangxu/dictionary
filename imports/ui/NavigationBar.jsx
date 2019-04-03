@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Button, Dropdown, Menu } from "semantic-ui-react";
 import { Meteor } from "meteor/meteor";
-import Lonin from "./Login.jsx";
+import Login from "./Login.jsx";
 import { Accounts } from "meteor/accounts-base";
 
 export default class NavigationBar extends Component {
@@ -27,7 +27,7 @@ export default class NavigationBar extends Component {
 				<Menu.Menu position="right">
 					<Menu.Item>
 						<Button onClick={this.handleClick.bind(this)}>Log In</Button>
-						<Lonin ref={this.loginRef}/>
+						<Login ref={this.loginRef}/>
 					</Menu.Item>
 					<Menu.Item>
 						<Dropdown
