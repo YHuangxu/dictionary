@@ -6,7 +6,7 @@ import { Grid, Container } from "semantic-ui-react";
 export default class WordList extends React.Component {
 	renderWordsList() {
 		return this.props.words.map((word, index) => (
-			<Grid.Column width={4} key={index}>
+			<Grid.Column width={8} key={index}>
 				<WordItem word={word} />
 			</Grid.Column>
 		));

@@ -27,7 +27,7 @@ export default class App extends React.Component {
 			<Container>
 				<Header />
 
-				<h1>Welcome to Meteor!</h1>
+				<h1>LOGO PLACE!</h1>
 
 				<SearchBar onSubmit={this.onSearchSubmit.bind(this)} />
 

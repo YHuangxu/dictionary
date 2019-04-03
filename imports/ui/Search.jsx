@@ -16,6 +16,7 @@ export default class SearchBar extends React.Component {
 		event.preventDefault();
 		
 		this.props.onSubmit(this.state.word);
+		this.setState({word: ""});
 	}
 
 	render() {
