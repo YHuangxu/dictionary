@@ -6,12 +6,21 @@ import { Accounts } from "meteor/accounts-base";
 import { withTracker } from "meteor/react-meteor-data";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import TypingAnimation from "../api/type.js";
 
 class NavigationBar extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			isLoggedin: false
+			isLoggedin: false,
+			typingContent: [
+				"Search for: <strong><i>definition</i></strong>",
+				"Search for: <strong><i>explanation</i></strong>",
+				"Search for: <strong><i>denotation</i></strong>",
+				"Search for: <strong><i>interpretation</i></strong>",
+				"Search for: <strong><i>explication</i></strong>",
+				"Search for: <strong><i>connotation</i></strong>"
+			]
 		};
 		this.loginRef = React.createRef();
 	}
@@ -61,7 +70,9 @@ class NavigationBar extends Component {
 		return (
 			<Menu secondary>
 				<Menu.Item name="logo" />
-				<Menu.Item name="type.js" />
+				<Menu.Item>
+					<TypingAnimation typingContent={this.state.typingContent}/>
+				</Menu.Item>
 
 				<Menu.Menu position="right">
 					{Meteor.user() ? "" : this.displayLogin()}
