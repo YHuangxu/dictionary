@@ -1,22 +1,28 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Login from "./Login.jsx";
 import { Meteor } from "meteor/meteor";
-import { Card, Button } from "semantic-ui-react";
+import { Card, Button, Message } from "semantic-ui-react";
+import { withTracker } from "meteor/react-meteor-data";
 
-export default class WordItem extends React.Component {
+class WordItem extends React.Component {
 	constructor(props) {
 		super(props);
-		this.loginRef = React.createRef();
+		this.state = {
+			justAdded: false,
+			error: ""
+		};
 	}
 
 	handleClick() {
-		if (Meteor.userId()) {
+		if (this.props.user) {
 			console.log("user loggedin!");
+			this.setState({ error: "" });
+			// call meteor method
+
+			// add word to list
 		} else {
-			this.loginRef.current.openModal();
+			this.setState({ error: "You need to log in first." });
 		}
-		
 	}
 
 	render() {
@@ -37,18 +43,21 @@ export default class WordItem extends React.Component {
 				</Card.Content>
 
 				<Card.Content extra>
-					<div className="ui two buttons">
-						<Button basic color="green"  onClick={this.handleClick.bind(this)}>
-							Add to my list
-						</Button>
-						
-						
-						<Button basic color="red">
-							Remove from my list
-						</Button>
+					{this.state.error && !this.props.user ? (
+						<Message negative>
+							<p>{this.state.error}</p>
+						</Message>
+					) : (
+						undefined
+					)}
 
-						<Login ref={this.loginRef}/>
-					</div>
+					<Button
+						basic
+						color="green"
+						onClick={this.handleClick.bind(this)}
+					>
+						Add to my list
+					</Button>
 				</Card.Content>
 			</Card>
 		);
@@ -56,5 +65,12 @@ export default class WordItem extends React.Component {
 }
 
 WordItem.propTypes = {
-	word: PropTypes.object.isRequired
+	word: PropTypes.object.isRequired,
+	user: PropTypes.bool.isRequired
 };
+
+export default withTracker(() => {
+	return {
+		user: !!Meteor.user()
+	};
+})(WordItem);
