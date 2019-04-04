@@ -9,7 +9,7 @@ class WordItem extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			justAdded: false,
+			justAdded: this.props.added,
 			error: ""
 		};
 	}
@@ -120,6 +120,7 @@ class WordItem extends React.Component {
 
 WordItem.propTypes = {
 	searchWord: PropTypes.string.isRequired,
+	added: PropTypes.bool.isRequired,
 	word: PropTypes.object.isRequired,
 	user: PropTypes.bool.isRequired,
 	myWords: PropTypes.arrayOf(PropTypes.object).isRequired
