@@ -13,12 +13,8 @@ export default class App extends React.Component {
 		super(props);
 		this.state = {
 			searchWord: "",
-<<<<<<< HEAD
-			words: []
-=======
 			words: [],
 			error: ""
->>>>>>> 5b49d19ac35395b15c2cf414611bf40c374a3846
 		};
 	}
 
