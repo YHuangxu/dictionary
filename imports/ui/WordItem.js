@@ -14,11 +14,11 @@ class WordItem extends React.Component {
 		};
 	}
 
-	handleClick() {
+	handleAddClick() {
 		if (this.props.user) {
 			console.log("user loggedin!");
-			this.setState({ error: "" });
-			
+			this.setState({ justAdded: true });
+
 			let content = {
 				word: this.props.searchWord,
 				definition: this.props.word.definition,
@@ -27,7 +27,7 @@ class WordItem extends React.Component {
 
 			console.log(content);
 
-			Meteor.call("defaultList.insert", content, (err) => {
+			Meteor.call("defaultList.insert", content, err => {
 				if (err) {
 					this.setState({
 						error: err.reason
@@ -43,10 +43,30 @@ class WordItem extends React.Component {
 					error: ""
 				});
 			});
-
 		} else {
 			this.setState({ error: "You need to log in first." });
 		}
+	}
+
+	handleRemoveClick() {
+		this.setState({ justAdded: false });
+
+		Meteor.call("defaultList.remove", this.props.word.definition, err => {
+			if (err) {
+				this.setState({
+					error: err.reason
+				});
+
+				console.log("Error from meteor.call" + err);
+				return;
+			}
+
+			console.log("Word removed");
+
+			this.setState({
+				error: ""
+			});
+		});
 	}
 
 	render() {
@@ -75,13 +95,23 @@ class WordItem extends React.Component {
 						undefined
 					)}
 
-					<Button
-						basic
-						color="green"
-						onClick={this.handleClick.bind(this)}
-					>
-						Add to my list
-					</Button>
+					{this.state.justAdded ? (
+						<Button
+							basic
+							color="red"
+							onClick={this.handleRemoveClick.bind(this)}
+						>
+							Remove from my list
+						</Button>
+					) : (
+						<Button
+							basic
+							color="green"
+							onClick={this.handleAddClick.bind(this)}
+						>
+							Add to my list
+						</Button>
+					)}
 				</Card.Content>
 			</Card>
 		);
@@ -91,7 +121,8 @@ class WordItem extends React.Component {
 WordItem.propTypes = {
 	searchWord: PropTypes.string.isRequired,
 	word: PropTypes.object.isRequired,
-	user: PropTypes.bool.isRequired
+	user: PropTypes.bool.isRequired,
+	myWords: PropTypes.arrayOf(PropTypes.object).isRequired
 };
 
 export default withTracker(() => {

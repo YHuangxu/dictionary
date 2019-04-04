@@ -24,15 +24,15 @@ Meteor.methods({
 		});
 	},
 
-	"defaultList.remove"(id) {
-		check(id, String);
+	"defaultList.remove"(definition) {
+		check(definition, String);
 
 		if (!this.userId) {
 			throw new Meteor.Error("not-authorized");
 		}
 
 		DefaultList.remove({
-			_id: id
+			"content.definition": definition
 		});
 	}
 });
