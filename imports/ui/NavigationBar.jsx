@@ -5,6 +5,7 @@ import Login from "./Login.jsx";
 import { Accounts } from "meteor/accounts-base";
 import { withTracker } from "meteor/react-meteor-data";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 class NavigationBar extends Component {
 	constructor(props) {
@@ -43,7 +44,7 @@ class NavigationBar extends Component {
 					}
 				>
 					<Dropdown.Menu>
-						<Dropdown.Item icon="folder" text="My Lists" />
+						<Link to="/glossary"><Dropdown.Item icon="folder" text="My Lists" /></Link>
 						<Dropdown.Divider />
 						<Dropdown.Item
 							icon="log out"
