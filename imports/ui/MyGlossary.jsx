@@ -3,17 +3,65 @@ import { Meteor } from "meteor/meteor";
 import { DefaultList } from "../api/lists";
 import PropTypes from "prop-types";
 import { withTracker } from "meteor/react-meteor-data";
+import { Container, Grid, Button } from "semantic-ui-react";
+import "../api/lists";
+import NavigationBar from "./NavigationBar.jsx";
 
 class MyGlossary extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			error: ""
+		};
+	}
+
+	handleClick(definition) {
+		Meteor.call("defaultList.remove", definition, err => {
+			if (err) {
+				this.setState({
+					error: err.reason
+				});
+
+				console.log("Error from meteor.call" + err);
+				return;
+			}
+
+			console.log("Word removed");
+
+			this.setState({
+				error: ""
+			});
+		});
+	}
+
+	renderWords() {
+		return this.props.myWords.map(word => (
+			<Grid.Row key={word._id}>
+				<Grid.Column width={2}>{word.content.word}</Grid.Column>
+				<Grid.Column width={12}>
+					defination: {word.content.definition}
+					<br/>
+					example: {word.content.example}
+				</Grid.Column>
+				<Grid.Column width={2}>
+					<Button>Remove</Button>
+				</Grid.Column>
+			</Grid.Row>
+		));
+	}
 
 	render() {
 		return (
-			this.props.myWords.map(word => (
-				<div key={word._id}>{word.content.word}</div>))
+			<Container>
+				<NavigationBar />
+
+				<Grid columns="two" divided>
+					{this.renderWords()}
+				</Grid>
+			</Container>
 		);
 	}
 }
-
 
 MyGlossary.propTypes = {
 	myWords: PropTypes.arrayOf(PropTypes.object).isRequired

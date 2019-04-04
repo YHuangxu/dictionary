@@ -16,7 +16,6 @@ export default class TypingAnimation extends Component {
 				"Search for: explanation",
 				"Search for: denotation",
 				"Search for: interpretation",
-				"Search for: explication",
 				"Search for: connotation"
 			],
 			typeSpeed: 50,

@@ -1,10 +1,10 @@
 import React from "react";
 import { Meteor } from "meteor/meteor";
-import { Container } from "semantic-ui-react";
+import { Container, Image } from "semantic-ui-react";
 
 import NavigationBar from "./NavigationBar.jsx";
-import SearchBar from "./Search.jsx";
-
+import SearchBar from "./SearchBar.jsx";
+import TypingAnimation from "../api/type.js";
 import WordsList from "./WordsList";
 import "../api/wordsAPI";
 
@@ -21,10 +21,14 @@ export default class App extends React.Component {
 	onSearchSubmit(word) {
 		Meteor.call("getData", "words/" + word, (err, res) => {
 			if (err) {
-				this.setState({  searchWord: "", words:[], error: "Word not found"});
+				this.setState({
+					searchWord: "",
+					words: [],
+					error: "Word not found"
+				});
 				return;
 			}
-			
+
 			this.setState({
 				searchWord: res.word,
 				words: res.results,
@@ -51,15 +55,16 @@ export default class App extends React.Component {
 	}
 
 	render() {
+		let num = Math.floor(Math.random() * 10) + 1;
+		let imgSrc = "/" + num + ".png";
+
 		return (
-			<Container>
+			<Container textAlign="center">
 				<NavigationBar />
-
-				<h1>LOGO PLACE!</h1>
-
+				<Image centered src={imgSrc} size="big" />
+				<TypingAnimation /> <br />
 				<SearchBar onSubmit={this.onSearchSubmit.bind(this)} />
 				{this.state.error ? this.state.error : undefined}
-
 				<WordsList
 					searchWord={this.state.searchWord}
 					words={this.state.words}
