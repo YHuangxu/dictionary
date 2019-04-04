@@ -12,15 +12,7 @@ export default class App extends React.Component {
 		super(props);
 		this.state = {
 			searchWord: "",
-			words: [],
-			strings: [
-				"<i>definition</i>",
-				"<i>explanation</i>",
-				"<i>denotation</i>",
-				"<i>interpretation</i>",
-				"<i>explication</i>",
-				"<i>connotation</i>"
-			]
+			words: []
 		};
 	}
 

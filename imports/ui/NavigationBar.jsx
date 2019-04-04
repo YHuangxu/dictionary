@@ -12,15 +12,7 @@ class NavigationBar extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			isLoggedin: false,
-			typingContent: [
-				"Search for: <strong><i>definition</i></strong>",
-				"Search for: <strong><i>explanation</i></strong>",
-				"Search for: <strong><i>denotation</i></strong>",
-				"Search for: <strong><i>interpretation</i></strong>",
-				"Search for: <strong><i>explication</i></strong>",
-				"Search for: <strong><i>connotation</i></strong>"
-			]
+			isLoggedin: false
 		};
 		this.loginRef = React.createRef();
 	}
@@ -71,7 +63,7 @@ class NavigationBar extends Component {
 			<Menu secondary>
 				<Menu.Item name="logo" />
 				<Menu.Item>
-					<TypingAnimation typingContent={this.state.typingContent}/>
+					<TypingAnimation />
 				</Menu.Item>
 
 				<Menu.Menu position="right">

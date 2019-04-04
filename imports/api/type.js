@@ -1,15 +1,24 @@
 import React, { Component } from "react";
 import Typed from "typed.js";
-import PropTypes from "prop-types";
+
 
 export default class TypingAnimation extends Component {
 	componentDidMount() {
 		// If you want to pass more options as props, simply add
 		// your desired props to this destructuring assignment.
-		const { typingContent } = this.props;
+
+		// const { typingContent } = this.props;
+
 		// You can pass other options here, such as typing speed, back speed, etc.
 		const options = {
-			strings: typingContent,
+			strings: [
+				"Search for: definition",
+				"Search for: explanation",
+				"Search for: denotation",
+				"Search for: interpretation",
+				"Search for: explication",
+				"Search for: connotation"
+			],
 			typeSpeed: 50,
 			backSpeed: 50,
 			loop: true,
@@ -41,6 +50,3 @@ export default class TypingAnimation extends Component {
 	}
 }
 
-TypingAnimation.propTypes = {
-	typingContent: PropTypes.string.isRequired
-};
