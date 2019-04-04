@@ -2,7 +2,7 @@ import { Meteor } from "meteor/meteor";
 import { Mongo } from "meteor/mongo";
 import { check } from "meteor/check";
 
-export const DefaultList = new Mongo.Collections("defaultList");
+export const DefaultList = new Mongo.Collection("defaultList");
 
 if (Meteor.isServer) {
 	Meteor.publish("defaultList", function() {
@@ -11,8 +11,8 @@ if (Meteor.isServer) {
 }
 
 Meteor.methods({
-	"defaultList.insert"(word) {
-		check(word, String);
+	"defaultList.insert"(content) {
+		check(content, Object);
 
 		if (!this.userId) {
 			throw new Meteor.Error("not-authorized");
@@ -20,11 +20,7 @@ Meteor.methods({
 		
 		DefaultList.insert({
 			userId: this.userId,
-			content: {
-				word: word,
-				definition: word,
-				example: word
-			}
+			content: content
 		});
 	},
 

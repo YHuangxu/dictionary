@@ -12,6 +12,7 @@ export default class App extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+			searchWord: "",
 			words: []
 		};
 	}
@@ -19,7 +20,7 @@ export default class App extends React.Component {
 	onSearchSubmit(word) {
 		wordsAPI
 			.get(`words/${word}`)
-			.then(res => this.setState({ words: res.data.results }));
+			.then(res => this.setState({ searchWord: res.data.word, words: res.data.results }));
 	}
 
 	render() {
@@ -31,7 +32,7 @@ export default class App extends React.Component {
 
 				<SearchBar onSubmit={this.onSearchSubmit.bind(this)} />
 
-				<WordsList words={this.state.words} />
+				<WordsList searchWord={this.state.searchWord} words={this.state.words} />
 			</Container>
 		);
 	}
