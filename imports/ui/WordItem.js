@@ -73,10 +73,10 @@ class WordItem extends React.Component {
 		return (
 			<Card fluid className="hvr-grow-shadow">
 				<Card.Content>
-					<Card.Header>
+					<Card.Description>
 						{" "}
 						DEFINITION: {this.props.word.definition}{" "}
-					</Card.Header>
+					</Card.Description>
 					<Card.Description>
 						{" "}
 						EXAMPLE:{" "}
