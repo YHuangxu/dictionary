@@ -12,7 +12,7 @@ if (Meteor.isServer) {
 
 Meteor.methods({
 	"defaultList.insert"(word, content) {
-		check(content, String);
+		check(word, String);
 		check(content, Object);
 
 		if (!this.userId) {
