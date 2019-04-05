@@ -15,8 +15,8 @@ class MyGlossary extends Component {
 		};
 	}
 
-	handleClick(definition) {
-		Meteor.call("defaultList.remove", definition, err => {
+	handleClick(event) {
+		Meteor.call("defaultList.remove", event.target.id, err => {
 			if (err) {
 				this.setState({
 					error: err.reason
@@ -40,11 +40,16 @@ class MyGlossary extends Component {
 				<Grid.Column width={2}>{word.word}</Grid.Column>
 				<Grid.Column width={12}>
 					defination: {word.content.definition}
-					<br/>
-					{word.content.example? word.content.example : undefined}
+					<br />
+					{word.content.example ? word.content.example : undefined}
 				</Grid.Column>
 				<Grid.Column width={2}>
-					<Button>Remove</Button>
+					<Button
+						id={word._id}
+						onClick={this.handleClick.bind(this)}
+					>
+						Remove
+					</Button>
 				</Grid.Column>
 			</Grid.Row>
 		));

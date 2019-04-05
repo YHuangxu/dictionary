@@ -7,7 +7,7 @@ export default class WordList extends React.Component {
 	renderWordsList() {
 		return this.props.words.map((word, index) => (
 			<Grid.Column width={8} key={index}>
-				<WordItem searchWord={this.props.searchWord} word={word} added={false} />
+				<WordItem searchWord={this.props.searchWord} word={word} />
 			</Grid.Column>
 		));
 	}

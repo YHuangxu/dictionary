@@ -6,7 +6,7 @@ export const DefaultList = new Mongo.Collection("defaultList");
 
 if (Meteor.isServer) {
 	Meteor.publish("defaultList", function() {
-		return DefaultList.find({userId: this.userId});
+		return DefaultList.find({ userId: this.userId });
 	});
 }
 
@@ -17,7 +17,7 @@ Meteor.methods({
 		if (!this.userId) {
 			throw new Meteor.Error("not-authorized");
 		}
-		
+
 		DefaultList.insert({
 			userId: this.userId,
 			word: word,
@@ -25,16 +25,15 @@ Meteor.methods({
 		});
 	},
 
-	"defaultList.remove"(definition) {
-		check(definition, String);
+	"defaultList.remove"(id) {
+		check(id, String);
 
 		if (!this.userId) {
 			throw new Meteor.Error("not-authorized");
 		}
 
-		DefaultList.remove({
-			"content.definition": definition
-		});
+		DefaultList.remove(
+			{ _id: id }
+		);
 	}
 });
-

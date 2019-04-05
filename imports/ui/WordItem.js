@@ -9,24 +9,23 @@ class WordItem extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			justAdded: false,
-			error: ""
+			error: "",
+			justSaved: false
 		};
 	}
 
 	handleAddClick() {
 		if (this.props.user) {
-			console.log("user loggedin!");
-			this.setState({ justAdded: true });
+			this.setState({ justSaved: true });
+			setTimeout(() => this.setState({ justSaved: false }), 1000);
 
 			let word = this.props.searchWord;
 			let content = {
 				definition: this.props.word.definition,
-				example: this.props.word.examples ? this.props.word.examples[0] : undefined
+				example: this.props.word.examples
+					? this.props.word.examples[0]
+					: undefined
 			};
-
-			console.log(word);
-			console.log(content);
 
 			Meteor.call("defaultList.insert", word, content, err => {
 				if (err) {
@@ -49,27 +48,6 @@ class WordItem extends React.Component {
 		}
 	}
 
-	handleRemoveClick() {
-		this.setState({ justAdded: false });
-
-		Meteor.call("defaultList.remove", this.props.word.definition, err => {
-			if (err) {
-				this.setState({
-					error: err.reason
-				});
-
-				console.log("Error from meteor.call" + err);
-				return;
-			}
-
-			console.log("Word removed");
-
-			this.setState({
-				error: ""
-			});
-		});
-	}
-
 	render() {
 		return (
 			<Card fluid className="hvr-grow-shadow">
@@ -86,6 +64,7 @@ class WordItem extends React.Component {
 				</Card.Content>
 
 				<Card.Content extra>
+					{/*show error message*/}
 					{this.state.error && !this.props.user ? (
 						<Message negative>
 							<p>{this.state.error}</p>
@@ -94,23 +73,20 @@ class WordItem extends React.Component {
 						undefined
 					)}
 
-					{this.state.justAdded ? (
-						<Button
-							basic
-							color="red"
-							onClick={this.handleRemoveClick.bind(this)}
-						>
-							Remove from my list
-						</Button>
-					) : (
-						<Button
-							basic
-							color="green"
-							onClick={this.handleAddClick.bind(this)}
-						>
-							Add to my list
-						</Button>
-					)}
+					{/*show save/saved button*/}
+					{this.state.justSaved ? <Button
+						basic
+						color="red"
+					>
+						Saved
+					</Button> : <Button
+						basic
+						color="green"
+						onClick={this.handleAddClick.bind(this)}
+					>
+						Save it to my list
+					</Button>}
+					
 				</Card.Content>
 			</Card>
 		);
