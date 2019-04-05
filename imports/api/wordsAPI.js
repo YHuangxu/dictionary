@@ -6,7 +6,7 @@ if (Meteor.isServer) {
 	Meteor.methods({
 		"getData"(param) {
 			const wordsAPI = axios.create({
-				baseURL: "https://wordsapiv1.p.rapidapi.com/",
+				baseURL: "https://wordsapiv1.p.rapidapi.com/words/",
 				headers: {
 					"X-RapidAPI-Key": apiKey.KEY
 				}

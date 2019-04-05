@@ -19,7 +19,14 @@ export default class App extends React.Component {
 	}
 
 	onSearchSubmit(word) {
-		Meteor.call("getData", "words/" + word, (err, res) => {
+		if (word.length === 0) {
+			this.setState({
+				error: "Word is required"
+			});
+			return;
+		}
+
+		Meteor.call("getData", word, (err, res) => {
 			if (err) {
 				this.setState({
 					searchWord: "",
@@ -55,8 +62,11 @@ export default class App extends React.Component {
 	}
 
 	render() {
-		let num = Math.floor(Math.random() * 10) + 1;
+		// let date = new Date();
+		// let imgSrc = "/" + date.getDay() + ".png";
+		let num = Math.floor(Math.random() * 7) + 1;
 		let imgSrc = "/" + num + ".png";
+
 
 		return (
 			<Container textAlign="center">
