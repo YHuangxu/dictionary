@@ -65,7 +65,7 @@ class WordItem extends React.Component {
 					) : (
 						<Button
 							basic
-							color="green"
+							color="brown"
 							onClick={this.handleAddClick.bind(this)}
 						>
 							Save it to my list

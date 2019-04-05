@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, Dropdown, Menu, Image } from "semantic-ui-react";
+import { Button, Dropdown, Menu, Image, Header } from "semantic-ui-react";
 import { Meteor } from "meteor/meteor";
 import Login from "./Login.jsx";
 import { Accounts } from "meteor/accounts-base";
@@ -27,7 +27,13 @@ class NavigationBar extends Component {
 	displayLogin() {
 		return (
 			<Menu.Item>
-				<Button basic className="hvr-ripple-out" onClick={this.handleClick.bind(this)}>Log In</Button>
+				<Button
+					basic
+					className="hvr-ripple-out"
+					onClick={this.handleClick.bind(this)}
+				>
+					Log In
+				</Button>
 				<Login ref={this.loginRef} />
 			</Menu.Item>
 		);
@@ -36,9 +42,7 @@ class NavigationBar extends Component {
 	displayDropdown() {
 		return (
 			<Menu.Item>
-				<Dropdown
-					text={"Welcome: " + Meteor.user().username}
-				>
+				<Dropdown text={"Welcome: " + Meteor.user().username}>
 					<Dropdown.Menu>
 						<Link to="/glossary">
 							<Dropdown.Item icon="folder" text="My Lists" />
@@ -60,7 +64,11 @@ class NavigationBar extends Component {
 			<Menu secondary>
 				<Link to="/">
 					<Menu.Item>
-						<Image src="/logo.png" size="small" alt="Wordict logo"/> 
+						<Image
+							src="/logo.png"
+							size="small"
+							alt="Wordict logo"
+						/>
 						Keep growing, keep Wordicting
 					</Menu.Item>
 				</Link>
