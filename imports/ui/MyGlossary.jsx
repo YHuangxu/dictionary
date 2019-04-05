@@ -6,6 +6,7 @@ import { withTracker } from "meteor/react-meteor-data";
 import { Container, Grid, Button } from "semantic-ui-react";
 import "../api/lists";
 import NavigationBar from "./NavigationBar.jsx";
+import { Link } from "react-router-dom";
 
 class MyGlossary extends Component {
 	constructor(props) {
@@ -48,20 +49,23 @@ class MyGlossary extends Component {
 						Remove
 					</Button>
 				</Grid.Column>
+
 			</Grid.Row>
 		));
 	}
 
 	render() {
 		return (
-			<Container>
+			<Container textAlign="center">
 				<header>
 					<NavigationBar />
 				</header>
+				<br />
 				<main>
 					<Grid columns="two" divided>
 						{this.renderWords()}
-					</Grid>
+					</Grid><br/>
+					<Link to="/">Back</Link>
 				</main>
 			</Container>
 		);
