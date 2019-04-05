@@ -38,6 +38,7 @@ export default class TypingAnimation extends Component {
 			<div className="wrap">
 				<div className="type-wrap">
 					<span
+						id="typingContent"
 						style={{ whiteSpace: "pre" }}
 						ref={el => {
 							this.el = el;

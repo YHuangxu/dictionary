@@ -1,11 +1,15 @@
 body {
   padding: 10px;
-  font-size: 18px;
   font-family: sans-serif;
 }
 
 #searchBar {
   border-radius: 50px;
+}
+
+#typingContent {
+  font-size: 30px;
+  font-family: "Damion", cursive;;
 }
 
 /*Effect for definition of the searching word*/
