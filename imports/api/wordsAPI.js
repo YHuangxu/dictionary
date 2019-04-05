@@ -1,6 +1,5 @@
 import { Meteor } from "meteor/meteor";
 import axios from "axios";
-import apiKey from "./wordsAPI_config.js";
 
 if (Meteor.isServer) {
 	Meteor.methods({
@@ -8,7 +7,7 @@ if (Meteor.isServer) {
 			const wordsAPI = axios.create({
 				baseURL: "https://wordsapiv1.p.rapidapi.com/words/",
 				headers: {
-					"X-RapidAPI-Key": apiKey.KEY
+					"X-RapidAPI-Key": Meteor.config.apiKey
 				}
 			});
 
