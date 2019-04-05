@@ -73,7 +73,7 @@ export default class App extends React.Component {
 			<Container textAlign="center">
 				<NavigationBar />
 
-				<Image centered src={imgSrc} size="big" />
+				<Image centered src={imgSrc} size="big" alt="Wordict Logo"/>
 
 				<TypingAnimation /> <br />
 

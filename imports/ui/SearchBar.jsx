@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Input, Form, Grid } from "semantic-ui-react";
+import { Input, Form, Grid, Label } from "semantic-ui-react";
 
 export default class SearchBar extends React.Component {
 	constructor(props) {
@@ -20,10 +20,10 @@ export default class SearchBar extends React.Component {
 	render() {
 		return (
 			<Grid centered>
-
 				<Grid.Column width={10}>
 					<Form onSubmit={this.onFormSubmit.bind(this)}>
 						<Form.Field>
+							<label>Search for word</label>
 							<Input
 								id="searchBar"
 								value={this.state.word}
