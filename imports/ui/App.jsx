@@ -24,7 +24,7 @@ export default class App extends React.Component {
 	onSearchSubmit(word) {
 		if (word.length === 0) {
 			this.setState({
-				error: "Word is required"
+				error: "A valid word required"
 			});
 			return;
 		}
