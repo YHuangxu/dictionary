@@ -39,7 +39,7 @@ web, mobile, and desktop.
 ## Video and Slides
 Video demo of this project can be found [here](https://youtu.be/dCcqpMeR9v0). 
 
-Slide of this project can be found [here](https://docs.google.com/presentation/d/1WmwlLXZRelC0Dg87GY_z6nNH6uMqHMSZK_bxEEwXbR8/edit#slide=id.g54f4327236_0_546).
+Slide of this project can be found [here](https://docs.google.com/presentation/d/1Tzng8xJW8sIhq7SMrlvwhkd_7mSFzrwZkiLnkMPYjxQ/edit#slide=id.g5591a3b83a_0_105).
 
 
 ## License
