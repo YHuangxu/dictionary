@@ -1,4 +1,5 @@
 node_modules/
 .DS_Store
-imports/api/wordsAPI_config.js
 envs.sh
+config.json
+
