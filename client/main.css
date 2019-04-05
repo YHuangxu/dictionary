@@ -5,12 +5,28 @@ body {
 
 #searchBar {
   border-radius: 50px;
+  margin-bottom: 1.5em;
 }
 
 #typingContent {
   font-size: 30px;
   font-family: "Damion", cursive;;
 }
+
+#footerDiv {
+  text-align: center;
+}
+
+#footer {
+  position:relative;
+  bottom:10px;
+  margin-top: 1.5em;
+  color: black;
+  font-size: 0.8em;
+  opacity: 0.9;
+  font-weight: 300; 
+}
+
 
 /*Effect for definition of the searching word*/
 .hvr-grow-shadow {
@@ -72,4 +88,7 @@ body {
   -webkit-animation-name: hvr-ripple-out;
   animation-name: hvr-ripple-out;
 }
+
+
+
 

@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Meteor } from "meteor/meteor";
-import { Card, Button, Message } from "semantic-ui-react";
+import { Card, Button, Message, Segment } from "semantic-ui-react";
 import { withTracker } from "meteor/react-meteor-data";
 import { DefaultList } from "../api/lists";
 
@@ -50,21 +50,28 @@ class WordItem extends React.Component {
 
 	render() {
 		return (
-			<Card fluid className="hvr-grow-shadow">
-				<Card.Content>
-					<Card.Description>
-						{" "}
-						DEFINITION: {this.props.word.definition}{" "}
-					</Card.Description>
-					<Card.Description>
-						{this.props.word.examples
-							? this.props.word.examples[0]
-							: undefined}{" "}
-					</Card.Description>
-				</Card.Content>
+			<Segment.Group stacked>
+				<Segment>definition: {this.props.word.definition} </Segment>
+				{this.props.word.examples ? (
+					<Segment>example: {this.props.word.examples[0]}</Segment>
+				) : (
+					undefined
+				)}
+				<Segment>
+					{this.state.justSaved ? (
+						<Button basic color="red">
+							Saved
+						</Button>
+					) : (
+						<Button
+							basic
+							color="green"
+							onClick={this.handleAddClick.bind(this)}
+						>
+							Save it to my list
+						</Button>
+					)}
 
-				<Card.Content extra>
-					{/*show error message*/}
 					{this.state.error && !this.props.user ? (
 						<Message negative>
 							<p>{this.state.error}</p>
@@ -72,23 +79,8 @@ class WordItem extends React.Component {
 					) : (
 						undefined
 					)}
-
-					{/*show save/saved button*/}
-					{this.state.justSaved ? <Button
-						basic
-						color="red"
-					>
-						Saved
-					</Button> : <Button
-						basic
-						color="green"
-						onClick={this.handleAddClick.bind(this)}
-					>
-						Save it to my list
-					</Button>}
-					
-				</Card.Content>
-			</Card>
+				</Segment>
+			</Segment.Group>
 		);
 	}
 }

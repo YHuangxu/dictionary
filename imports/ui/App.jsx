@@ -4,8 +4,10 @@ import { Container, Image } from "semantic-ui-react";
 
 import NavigationBar from "./NavigationBar.jsx";
 import SearchBar from "./SearchBar.jsx";
+
 import TypingAnimation from "../api/type.js";
 import WordsList from "./WordsList";
+
 import "../api/wordsAPI";
 
 export default class App extends React.Component {
@@ -70,10 +72,15 @@ export default class App extends React.Component {
 		return (
 			<Container textAlign="center">
 				<NavigationBar />
+
 				<Image centered src={imgSrc} size="big" />
+
 				<TypingAnimation /> <br />
+
 				<SearchBar onSubmit={this.onSearchSubmit.bind(this)} />
+
 				{this.state.error ? this.state.error : undefined}
+
 				<WordsList
 					searchWord={this.state.searchWord}
 					words={this.state.words}
