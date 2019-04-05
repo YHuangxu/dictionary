@@ -71,7 +71,7 @@ class WordItem extends React.Component {
 
 	render() {
 		return (
-			<Card fluid>
+			<Card fluid className="hvr-grow-shadow">
 				<Card.Content>
 					<Card.Header>
 						{" "}

@@ -25,6 +25,7 @@ export default class SearchBar extends React.Component {
 					<Form onSubmit={this.onFormSubmit.bind(this)}>
 						<Form.Field>
 							<Input
+								id="searchBar"
 								value={this.state.word}
 								onChange={e =>
 									this.setState({ word: e.target.value })

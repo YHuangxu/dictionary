@@ -27,7 +27,7 @@ class NavigationBar extends Component {
 	displayLogin() {
 		return (
 			<Menu.Item>
-				<Button basic onClick={this.handleClick.bind(this)}>Log In</Button>
+				<Button basic className="hvr-ripple-out" onClick={this.handleClick.bind(this)}>Log In</Button>
 				<Login ref={this.loginRef} />
 			</Menu.Item>
 		);
@@ -61,7 +61,7 @@ class NavigationBar extends Component {
 				<Link to="/">
 					<Menu.Item>
 						<Image src="/logo.png" size="small"/> 
-						Keep growing, keep Wordicting.
+						Keep growing, keep Wordicting
 					</Menu.Item>
 				</Link>
 
