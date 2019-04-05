@@ -16,6 +16,7 @@ export default class Login extends Component {
 		};
 	}
 
+	// user log in
 	onLogin() {
 		const username = document.querySelector("#username").value.trim();
 		const password = document.querySelector("#password").value.trim();
@@ -32,6 +33,7 @@ export default class Login extends Component {
 		});
 	}
 
+	// register
 	onRegister() {
 		const username = document.querySelector("#username").value.trim();
 		const email = document.querySelector("#email").value.trim();

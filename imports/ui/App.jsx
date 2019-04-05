@@ -20,6 +20,7 @@ export default class App extends React.Component {
 		};
 	}
 
+	// call api to get data
 	onSearchSubmit(word) {
 		if (word.length === 0) {
 			this.setState({
@@ -44,23 +45,6 @@ export default class App extends React.Component {
 				error: ""
 			});
 		});
-
-		// wordsAPI
-		// 	.get(`words/${word}`)
-		// 	.then(res => {
-		// 		console.log("valid");
-		// 		this.setState({
-		// 			searchWord: res.data.word,
-		// 			words: res.data.results,
-		// 			error: ""
-		// 		});
-		// 	})
-		// 	.catch(error => {
-		// 		console.log(error);
-
-		// 		this.setState({ error: "not a valid word" });
-		// 		return;
-		// 	});
 	}
 
 	render() {

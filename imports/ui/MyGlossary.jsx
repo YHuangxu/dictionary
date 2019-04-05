@@ -16,6 +16,7 @@ class MyGlossary extends Component {
 		};
 	}
 
+	// remove word from list
 	handleClick(event) {
 		Meteor.call("defaultList.remove", event.target.id, err => {
 			if (err) {
@@ -35,6 +36,7 @@ class MyGlossary extends Component {
 		});
 	}
 
+	// render all words in the default list
 	renderWords() {
 		return this.props.myWords.map(word => (
 			<Grid.Row key={word._id}>

@@ -1,6 +1,7 @@
 import SimpleSchema from "simpl-schema";
 import { Accounts } from "meteor/accounts-base";
 
+// new user validation 
 Accounts.validateNewUser(user => {
 	const username = user.username;
 	const email = user.emails[0].address;

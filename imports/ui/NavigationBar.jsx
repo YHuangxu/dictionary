@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, Dropdown, Menu, Image, Header } from "semantic-ui-react";
+import { Button, Dropdown, Menu, Image } from "semantic-ui-react";
 import { Meteor } from "meteor/meteor";
 import Login from "./Login.jsx";
 import { Accounts } from "meteor/accounts-base";

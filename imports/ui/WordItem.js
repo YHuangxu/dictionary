@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Meteor } from "meteor/meteor";
-import { Card, Button, Message, Segment } from "semantic-ui-react";
+import { Button, Message, Segment } from "semantic-ui-react";
 import { withTracker } from "meteor/react-meteor-data";
 import { DefaultList } from "../api/lists";
 
@@ -14,6 +14,7 @@ class WordItem extends React.Component {
 		};
 	}
 
+	// add word to list
 	handleAddClick() {
 		if (this.props.user) {
 			this.setState({ justSaved: true });
