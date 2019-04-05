@@ -37,11 +37,11 @@ class MyGlossary extends Component {
 	renderWords() {
 		return this.props.myWords.map(word => (
 			<Grid.Row key={word._id}>
-				<Grid.Column width={2}>{word.content.word}</Grid.Column>
+				<Grid.Column width={2}>{word.word}</Grid.Column>
 				<Grid.Column width={12}>
 					defination: {word.content.definition}
 					<br/>
-					example: {word.content.example}
+					{word.content.example? word.content.example : undefined}
 				</Grid.Column>
 				<Grid.Column width={2}>
 					<Button>Remove</Button>

@@ -9,7 +9,7 @@ class WordItem extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			justAdded: this.props.added,
+			justAdded: false,
 			error: ""
 		};
 	}
@@ -19,15 +19,16 @@ class WordItem extends React.Component {
 			console.log("user loggedin!");
 			this.setState({ justAdded: true });
 
+			let word = this.props.searchWord;
 			let content = {
-				word: this.props.searchWord,
 				definition: this.props.word.definition,
-				example: this.props.word.examples
+				example: this.props.word.examples ? this.props.word.examples[0] : undefined
 			};
 
+			console.log(word);
 			console.log(content);
 
-			Meteor.call("defaultList.insert", content, err => {
+			Meteor.call("defaultList.insert", word, content, err => {
 				if (err) {
 					this.setState({
 						error: err.reason
@@ -78,8 +79,6 @@ class WordItem extends React.Component {
 						DEFINITION: {this.props.word.definition}{" "}
 					</Card.Description>
 					<Card.Description>
-						{" "}
-						EXAMPLE:{" "}
 						{this.props.word.examples
 							? this.props.word.examples[0]
 							: undefined}{" "}
@@ -120,7 +119,6 @@ class WordItem extends React.Component {
 
 WordItem.propTypes = {
 	searchWord: PropTypes.string.isRequired,
-	added: PropTypes.bool.isRequired,
 	word: PropTypes.object.isRequired,
 	user: PropTypes.bool.isRequired,
 	myWords: PropTypes.arrayOf(PropTypes.object).isRequired

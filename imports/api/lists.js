@@ -11,7 +11,7 @@ if (Meteor.isServer) {
 }
 
 Meteor.methods({
-	"defaultList.insert"(content) {
+	"defaultList.insert"(word, content) {
 		check(content, Object);
 
 		if (!this.userId) {
@@ -20,6 +20,7 @@ Meteor.methods({
 		
 		DefaultList.insert({
 			userId: this.userId,
+			word: word,
 			content: content
 		});
 	},

@@ -67,7 +67,6 @@ export default class App extends React.Component {
 		let num = Math.floor(Math.random() * 7) + 1;
 		let imgSrc = "/" + num + ".png";
 
-
 		return (
 			<Container textAlign="center">
 				<NavigationBar />
