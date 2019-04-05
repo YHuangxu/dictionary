@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import Typed from "typed.js";
 
-
 export default class TypingAnimation extends Component {
 	componentDidMount() {
 		// If you want to pass more options as props, simply add
@@ -35,18 +34,15 @@ export default class TypingAnimation extends Component {
 
 	render() {
 		return (
-			<div className="wrap">
-				<div className="type-wrap">
-					<span
-						id="typingContent"
-						style={{ whiteSpace: "pre" }}
-						ref={el => {
-							this.el = el;
-						}}
-					/>
-				</div>
+			<div className="wrap type-wrap">
+				<span
+					id="typingContent"
+					style={{ whiteSpace: "pre" }}
+					ref={el => {
+						this.el = el;
+					}}
+				/>
 			</div>
 		);
 	}
 }
-
