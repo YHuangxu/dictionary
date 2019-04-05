@@ -1,17 +1,15 @@
-# [Wordict](https://flight-of-fantasy.herokuapp.com/)
+# [Wordict](https://wordict.herokuapp.com/)
 
 ## Author
 - [Karen Cao](https://qimincao.github.io/HomePage_Karen/)
 - [Freddy Lyu](https://freddydoesit.github.io/freddy/)
 
 ## Screenshot
-![screenshot](public/screenshot.gif)
+![screenshot](public/gif4P4.gif)
 
 ## Project Objective
 
-People would love to have some happy moments and be amused by some “useless and unrealistic” ideas. We want to build an app with pages not that serious and not that “useful”. 
-
-Flight-of-Fancy App is  an app where people can create some content that is out of box. Something that may be improper to speak it out during normal situations. LoL!
+This web app helps non-native speaker to learn English. Sometimes when we read or listen to others, there might be a word / words that we may be not familiar with. So with this app, we can search it. This app differs from traditional online dics. It integrates the searching functionality and the word list. So user can have access to his/her own searching history for review, also there will be review test to make it more interesting.
 
 CS5610 Course Link: http://johnguerra.co/classes/webDevelopment_spring_2019/ 
 
@@ -39,7 +37,7 @@ web, mobile, and desktop.
 
 
 ## Video and Slides
-Video demo of this project can be found [here](https://youtu.be/_bwwdzjsUgg). 
+Video demo of this project can be found [here](https://youtu.be/dCcqpMeR9v0). 
 
 Slide of this project can be found [here](https://docs.google.com/presentation/d/1WmwlLXZRelC0Dg87GY_z6nNH6uMqHMSZK_bxEEwXbR8/edit#slide=id.g54f4327236_0_546).
 
