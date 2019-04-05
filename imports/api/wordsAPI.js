@@ -7,7 +7,7 @@ if (Meteor.isServer) {
 			const wordsAPI = axios.create({
 				baseURL: "https://wordsapiv1.p.rapidapi.com/words/",
 				headers: {
-					"X-RapidAPI-Key": Meteor.config.apiKey
+					"X-RapidAPI-Key": Meteor.settings.apiKey
 				}
 			});
 
