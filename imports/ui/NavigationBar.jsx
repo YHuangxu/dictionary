@@ -60,7 +60,7 @@ class NavigationBar extends Component {
 			<Menu secondary>
 				<Link to="/">
 					<Menu.Item>
-						<Image src="/logo.png" size="small"/> 
+						<Image src="/logo.png" size="small" alt="Wordict logo"/> 
 						Keep growing, keep Wordicting
 					</Menu.Item>
 				</Link>
