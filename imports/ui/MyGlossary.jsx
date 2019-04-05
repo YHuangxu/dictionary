@@ -44,10 +44,7 @@ class MyGlossary extends Component {
 					{word.content.example ? word.content.example : undefined}
 				</Grid.Column>
 				<Grid.Column width={2}>
-					<Button
-						id={word._id}
-						onClick={this.handleClick.bind(this)}
-					>
+					<Button id={word._id} onClick={this.handleClick.bind(this)}>
 						Remove
 					</Button>
 				</Grid.Column>
@@ -58,11 +55,14 @@ class MyGlossary extends Component {
 	render() {
 		return (
 			<Container>
-				<NavigationBar />
-
-				<Grid columns="two" divided>
-					{this.renderWords()}
-				</Grid>
+				<header>
+					<NavigationBar />
+				</header>
+				<main>
+					<Grid columns="two" divided>
+						{this.renderWords()}
+					</Grid>
+				</main>
 			</Container>
 		);
 	}

@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Input, Form, Grid, Label } from "semantic-ui-react";
+import { Input, Form, Grid } from "semantic-ui-react";
 
 export default class SearchBar extends React.Component {
 	constructor(props) {
@@ -23,16 +23,17 @@ export default class SearchBar extends React.Component {
 				<Grid.Column width={10}>
 					<Form onSubmit={this.onFormSubmit.bind(this)}>
 						<Form.Field>
-							<label>Search for word</label>
 							<Input
 								id="searchBar"
+								type="text"
 								value={this.state.word}
 								onChange={e =>
 									this.setState({ word: e.target.value })
 								}
-								fluid
 								icon="search"
 								placeholder="Search..."
+								aria-label="search"
+								fluid
 							/>
 						</Form.Field>
 					</Form>

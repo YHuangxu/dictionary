@@ -71,20 +71,24 @@ export default class App extends React.Component {
 
 		return (
 			<Container textAlign="center">
-				<NavigationBar />
-
-				<Image centered src={imgSrc} size="big" alt="Wordict Logo"/>
-
-				<TypingAnimation /> <br />
-
-				<SearchBar onSubmit={this.onSearchSubmit.bind(this)} />
-
-				{this.state.error ? this.state.error : undefined}
-
-				<WordsList
-					searchWord={this.state.searchWord}
-					words={this.state.words}
-				/>
+				<header>
+					<NavigationBar className="header" />
+				</header>
+				<main>
+					<Image
+						centered
+						src={imgSrc}
+						size="big"
+						alt="Wordict Logo"
+					/>
+					<TypingAnimation /> <br />
+					<SearchBar onSubmit={this.onSearchSubmit.bind(this)} />
+					{this.state.error ? this.state.error : undefined}
+					<WordsList
+						searchWord={this.state.searchWord}
+						words={this.state.words}
+					/>
+				</main>
 			</Container>
 		);
 	}
