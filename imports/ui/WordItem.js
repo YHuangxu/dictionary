@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Meteor } from "meteor/meteor";
-import { Button, Message, Segment } from "semantic-ui-react";
+import { Button, Message, Segment, Popup, Card } from "semantic-ui-react";
 import { withTracker } from "meteor/react-meteor-data";
 import { DefaultList } from "../api/lists";
 
@@ -50,27 +50,77 @@ class WordItem extends React.Component {
 	}
 
 	render() {
-		return (
-			<Segment.Group stacked>
-				<Segment>definition: {this.props.word.definition} </Segment>
+		const segmentContent = (
+			<Card className="hvr-grow-shadow" centered>
+				<Card.Content>
+					
+					Definition: {this.props.word.definition}
+					<br/><br/>
+					{this.props.word.examples ? (
+						<Card.Description>
+							Example: {this.props.word.examples[0]}
+						</Card.Description>
+					) : (
+						undefined
+					)}
+				</Card.Content>
+				<Card.Content extra>
+					{this.props.user ? (
+						this.state.justSaved ? (
+							<Button basic color="red">
+								Saved
+							</Button>
+						) : (
+							<Button
+								basic
+								color="brown"
+								onClick={this.handleAddClick.bind(this)}
+							>
+								Save it to my list
+							</Button>
+						)
+					) : (
+						undefined
+					)}
+
+					{this.state.error && !this.props.user ? (
+						<Message negative>
+							<p>{this.state.error}</p>
+						</Message>
+					) : (
+						undefined
+					)}
+				</Card.Content>
+			</Card>
+
+			/*<Segment.Group stacked className="hvr-grow-shadow">
+				<Segment>Definition: {this.props.word.definition}</Segment>
+
 				{this.props.word.examples ? (
-					<Segment>example: {this.props.word.examples[0]}</Segment>
+					<Segment>
+						Example: {this.props.word.examples[0]}
+					</Segment>
 				) : (
 					undefined
 				)}
+
 				<Segment>
-					{this.state.justSaved ? (
-						<Button basic color="red">
-							Saved
-						</Button>
+					{this.props.user ? (
+						this.state.justSaved ? (
+							<Button basic color="red">
+								Saved
+							</Button>
+						) : (
+							<Button
+								basic
+								color="brown"
+								onClick={this.handleAddClick.bind(this)}
+							>
+								Save it to my list
+							</Button>
+						)
 					) : (
-						<Button
-							basic
-							color="brown"
-							onClick={this.handleAddClick.bind(this)}
-						>
-							Save it to my list
-						</Button>
+						undefined
 					)}
 
 					{this.state.error && !this.props.user ? (
@@ -82,6 +132,25 @@ class WordItem extends React.Component {
 					)}
 				</Segment>
 			</Segment.Group>
+		*/
+		);
+
+		return (
+			<div>
+				{this.props.user ? (
+					<Popup disabled trigger={segmentContent}>
+						<Popup.Header>
+							Log in to save it to your list
+						</Popup.Header>
+					</Popup>
+				) : (
+					<Popup trigger={segmentContent}>
+						<Popup.Header>
+							Log in to save it to your list
+						</Popup.Header>
+					</Popup>
+				)}
+			</div>
 		);
 	}
 }
