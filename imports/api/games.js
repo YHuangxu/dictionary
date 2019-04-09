@@ -5,12 +5,17 @@ import { reviewLogic } from "./reviewLogic.js";
 
 export const Games = new Mongo.Collection("games");
 
+if (Meteor.isServer) {
+	Meteor.publish("games", function() {
+		return Games.find();
+	});
+}
 
 Meteor.methods({
-	"games.play"() {
+	"game.play"() {
 		// remove all played game with this user
 		let endGame = Games.findOne({
-			status: "gameover",
+			gameStatus: "gameover",
 			$or: [{ player1: Meteor.userId() }, { player2: Meteor.userId() }]
 		});
 		if (endGame !== undefined) {
@@ -19,7 +24,7 @@ Meteor.methods({
 
 		// find a waiting game
 		// If there is no waiting game, start a new game, otherwise join this game
-		const game = Games.findOne({ status: "waiting" });
+		const game = Games.findOne({ gameStatus: "waiting" });
 
 		if (game === undefined) {
 			console.log("Starting a new Game");
