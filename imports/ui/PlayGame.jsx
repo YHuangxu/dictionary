@@ -8,7 +8,7 @@ import { Button } from "semantic-ui-react";
 import { Games } from "../api/games.js";
 
 class PlayGame extends React.Component {
-	
+
 	handleClick() {
 		console.log("Play button has been clicked!!!!!");
 		Session.set("inGame", true);
@@ -37,9 +37,9 @@ class PlayGame extends React.Component {
 
 function setStatus() {
 	if (Session.get("inGame")) {
-		let newGame = Games.findOne();
-
-		console.log("set status, newGame:" + newGame);
+		let newGame = Games.findOne({
+			$or: [{ player1: Meteor.userId() }, { player2: Meteor.userId() }]
+		});
 
 		if (newGame !== undefined) {
 			console.log("newGame.gameStatus: " + newGame.gameStatus);
