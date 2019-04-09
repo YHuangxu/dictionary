@@ -22,13 +22,13 @@ export default class ReviewGame extends React.Component {
 							Click play button to start a review game
 						</Message.Item>
 						<Message.Item>
-							You will be randomly assigned a game
+							You will be randomly assigned an opponent
 						</Message.Item>
 						<Message.Item>
-							Each player has 10 words, game will over when any of players finish reviewing
+							Each player has 10 words. Game is over the moment one of two players finishes reviewing
 						</Message.Item>
 						<Message.Item>
-							Every word worth 10 points. The winner will be awarded 100 points more
+							Every word is worth 10 points. The winner will be awarded 100 points.
 						</Message.Item>
 					</Message.List>
 				</Message>

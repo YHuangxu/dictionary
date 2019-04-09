@@ -51,7 +51,6 @@ class MyGlossary extends Component {
 						Remove
 					</Button>
 				</Grid.Column>
-
 			</Grid.Row>
 		));
 	}
@@ -66,9 +65,29 @@ class MyGlossary extends Component {
 				<main>
 					<Grid columns="two" divided>
 						{this.renderWords()}
-					</Grid><br/>
-					<Link to="/">Back to main</Link><br/>
-					<Link to="/review">review</Link>
+					</Grid>
+					<br />
+					{this.props.myWords.length === 0 ? (
+						<div>
+							<p>You have not added words to your list.</p>
+							<br/>
+							<br/>
+							<br/>
+							<Link to="/">
+								<Button>Back to main</Button>
+							</Link>
+						</div>
+					) : (
+						<Button.Group>
+							<Link to="/">
+								<Button>Back to main</Button>
+							</Link>
+							<Button.Or />
+							<Link to="/review">
+								<Button positive>Review</Button>
+							</Link>
+						</Button.Group>
+					)}
 				</main>
 			</Container>
 		);
