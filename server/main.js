@@ -2,6 +2,9 @@ import "../imports/startup/simpl-schema-config.js";
 import "../imports/api/users.js";
 import "../imports/api/lists.js";
 import "../imports/api/wordsAPI.js";
+import "../imports/api/games.js";
+import "../imports/api/reviewLogic.js";
+
 import { Meteor } from "meteor/meteor";
 import { DDPRateLimiter } from "meteor/ddp-rate-limiter";
 import { WebApp } from "meteor/webapp";
