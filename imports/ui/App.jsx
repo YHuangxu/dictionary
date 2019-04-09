@@ -48,10 +48,8 @@ export default class App extends React.Component {
 	}
 
 	render() {
-		// let date = new Date();
-		// let imgSrc = "/" + date.getDay() + ".png";
-		let num = Math.floor(Math.random() * 7) + 1;
-		let imgSrc = "/" + num + ".png";
+		let date = new Date();
+		let imgSrc = "/" + date.getDay() + ".png";
 
 		return (
 			<Container textAlign="center">

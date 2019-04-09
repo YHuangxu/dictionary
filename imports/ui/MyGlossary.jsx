@@ -67,7 +67,8 @@ class MyGlossary extends Component {
 					<Grid columns="two" divided>
 						{this.renderWords()}
 					</Grid><br/>
-					<Link to="/">Back</Link>
+					<Link to="/">Back to main</Link><br/>
+					<Link to="/review">review</Link>
 				</main>
 			</Container>
 		);

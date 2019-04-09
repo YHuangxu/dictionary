@@ -7,10 +7,11 @@ import { Tracker } from "meteor/tracker";
 import App from "../ui/App.jsx";
 import NotFound from "../ui/NotFound.jsx";
 import MyGlossary from "../ui/MyGlossary.jsx";
+import ReviewGame from "../ui/ReviewGame.jsx";
 
 const browserHistory = createBrowserHistory();
 
-const authPages = ["/glossary"];
+const authPages = ["/glossary", "/review"];
 
 // Tracking auth status
 const authStatus = isLoggedin => {
@@ -31,14 +32,11 @@ export const renderRoutes = () => (
 		<Switch>
 			<Route exact path="/" component={App} />
 
-			<Route
-				exact
-				path="/glossary"
-				component={MyGlossary}
-			/>
+			<Route exact path="/glossary" component={MyGlossary} />
+
+			<Route exact path="/review" component={ReviewGame} />
 
 			<Route component={NotFound} />
-
 		</Switch>
 	</Router>
 );
