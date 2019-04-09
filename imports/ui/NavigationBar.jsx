@@ -47,6 +47,9 @@ class NavigationBar extends Component {
 						<Link to="/glossary">
 							<Dropdown.Item icon="folder" text="My Lists" />
 						</Link>
+						<Link to="/review">
+							<Dropdown.Item icon="game" text="Review" />
+						</Link>
 						<Dropdown.Divider />
 						<Dropdown.Item
 							icon="log out"

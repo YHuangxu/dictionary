@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Meteor } from "meteor/meteor";
-import { Button, Message, Segment, Popup, Card } from "semantic-ui-react";
+import { Button, Message, Popup, Card } from "semantic-ui-react";
 import { withTracker } from "meteor/react-meteor-data";
 import { DefaultList } from "../api/lists";
 
