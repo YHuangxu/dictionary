@@ -31,7 +31,7 @@ class ReviewLogic {
 				{
 					$set: {
 						player2: Meteor.userId(),
-						status: "playing"
+						gameStatus: "playing"
 					}
 				}
 			);

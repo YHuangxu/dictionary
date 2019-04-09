@@ -8,20 +8,12 @@ import { Button } from "semantic-ui-react";
 import { Games } from "../api/games.js";
 
 class PlayGame extends React.Component {
-	constructor(props) {
-		super(props);
-
-		this.state = {
-			isReady: false,
-			status: "Click play to start!"
-		};
-	}
-
+	
 	handleClick() {
-		console.log("play button has been clicked!");
+		console.log("Play button has been clicked!!!!!");
 		Session.set("inGame", true);
 
-		Meteor.call("games.play");
+		Meteor.call("game.play");
 		// Meteor.subscribe("MyGame");
 	}
 
@@ -32,6 +24,12 @@ class PlayGame extends React.Component {
 				<div>
 					<span>Game Status</span> : <span>{this.props.status}</span>
 				</div>
+
+				{this.props.gameStarted ? (
+					<h4>game started!</h4>
+				) : (
+					<h4>Game not start</h4>
+				)}
 			</Container>
 		);
 	}
@@ -41,8 +39,12 @@ function setStatus() {
 	if (Session.get("inGame")) {
 		let newGame = Games.findOne();
 
+		console.log("set status, newGame:" + newGame);
+
 		if (newGame !== undefined) {
-			if (newGame.GameStatus === "waiting") {
+			console.log("newGame.gameStatus: " + newGame.gameStatus);
+
+			if (newGame.gameStatus === "waiting") {
 				return "Waiting for an opponent...";
 			} else if (newGame.gameStatus === "playing") {
 				return "Game playing...";
@@ -65,12 +67,36 @@ function setStatus() {
 	}
 }
 
+function gameStarted() {
+	if (Session.get("inGame")) {
+		let myGame = Games.findOne({
+			gameStatus: "playing",
+			$or: [{ player1: Meteor.userId() }, { player2: Meteor.userId() }]
+		});
+
+		console.log("gameStarted function. " + myGame);
+
+		if (myGame !== undefined) {
+			return true;
+		} else {
+			return false;
+		}
+	} else {
+		return false;
+	}
+}
+
 PlayGame.propTypes = {
-	status: PropTypes.string
+	status: PropTypes.string,
+	gameStarted: PropTypes.bool
 };
 
 export default withTracker(() => {
+	const handle = Meteor.subscribe("games");
+
 	return {
-		status: setStatus()
+		status: setStatus(),
+		gameStarted: gameStarted(),
+		ready: handle.ready()
 	};
 })(PlayGame);
