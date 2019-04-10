@@ -3,7 +3,14 @@ import { Meteor } from "meteor/meteor";
 import { DefaultList } from "../api/lists";
 import PropTypes from "prop-types";
 import { withTracker } from "meteor/react-meteor-data";
-import { Container, Grid, Button } from "semantic-ui-react";
+import {
+	Container,
+	Grid,
+	Button,
+	Header,
+	Icon,
+	Modal
+} from "semantic-ui-react";
 import "../api/lists";
 import NavigationBar from "./NavigationBar.jsx";
 import { Link } from "react-router-dom";
@@ -12,7 +19,8 @@ class MyGlossary extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			error: ""
+			error: "",
+			modalOpen: false
 		};
 	}
 
@@ -34,6 +42,19 @@ class MyGlossary extends Component {
 				error: ""
 			});
 		});
+	}
+
+	// to detect if the user can join a multiplayer review game
+	handleReviewClick() {
+		const number = this.props.myWords.length;
+
+		if (number < 10) {
+			this.setState({
+				modalOpen: true
+			});
+		} else {
+			this.props.history.push("/review");
+		}
 	}
 
 	// render all words in the default list
@@ -85,12 +106,49 @@ class MyGlossary extends Component {
 						</div>
 					) : (
 						<Button.Group>
+							<Modal
+								trigger={
+									<Button
+										positive
+										onClick={() => this.handleReviewClick()}
+									>
+										Review
+									</Button>
+								}
+								open={this.state.modalOpen}
+							>
+								<Header
+									icon="info circle"
+									content="Word Hard, Play Harder"
+								/>
+								<Modal.Content>
+									<p>
+										Your list has less than 10 words. Do you
+										want to review by you own?
+									</p>
+								</Modal.Content>
+								<Modal.Actions>
+									<Button
+										color="green"
+										onClick={() =>
+											this.setState({ modalOpen: false })
+										}
+									>
+										<Icon name="checkmark" /> Yes
+									</Button>
+									<Button
+										color="red"
+										onClick={() =>
+											this.setState({ modalOpen: false })
+										}
+									>
+										<Icon name="remove" /> No
+									</Button>
+								</Modal.Actions>
+							</Modal>
+							<Button.Or />
 							<Link to="/">
 								<Button>Back to main</Button>
-							</Link>
-							<Button.Or />
-							<Link to="/review">
-								<Button positive>Review</Button>
 							</Link>
 						</Button.Group>
 					)}
@@ -101,7 +159,8 @@ class MyGlossary extends Component {
 }
 
 MyGlossary.propTypes = {
-	myWords: PropTypes.arrayOf(PropTypes.object).isRequired
+	myWords: PropTypes.arrayOf(PropTypes.object).isRequired,
+	history: PropTypes.object.isRequired
 };
 
 export default withTracker(() => {
