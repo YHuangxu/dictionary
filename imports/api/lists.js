@@ -15,41 +15,34 @@ Meteor.methods({
 		check(word, String);
 		check(content, Object);
 
-		if (!this.userId) {
+		if (!Meteor.userId()) {
 			throw new Meteor.Error("not-authorized");
 		}
 
-		let definitionToCompare = content.definition;
-		console.log(definitionToCompare);
+		let definition = content.definition;
 
-		let hasData = DefaultList.find({ "content.definition": definitionToCompare}).fetch().length;
-		console.log("hasData: " + hasData);
-		console.log(DefaultList.find({ "content.definition": definitionToCompare}).fetch());
+		let wordDoc = DefaultList.findOne({
+			$and: [{userId: Meteor.userId()}, {word: word}, {definition: definition}]
+		});
 
-		if (hasData === 0) {
+
+		// console.log("Meteor method ---- defaultList.insert" + wordDoc);
+
+		if (wordDoc === undefined) {
 			DefaultList.insert({
-				userId: this.userId,
+				userId: Meteor.userId(),
 				word: word,
+				definition: definition,
 				content: content,
-				searchTimes: 0
+				searchTimes: 1
 			});
-		}
-	},
-
-	"defaultList.updateSearchTimes"(word) {
-		check(word, String);
-
-		if (!this.userId) {
-			throw new Meteor.Error("not-authorized");
-		}
-
-		let needUpdate = DefaultList.find({ word: word }).fetch().length;
-		console.log("needUpdate: " + needUpdate);
-
-		if (needUpdate !== 0) {
-			console.log(DefaultList.find({ word: word }));
-
-			DefaultList.update({ word: word }, { $inc: { searchTimes: 1 }}, {multi: true});
+		} else {
+			DefaultList.update(
+				{
+					_id: wordDoc._id
+				},
+				{ $inc: { searchTimes: 1 } }
+			);
 		}
 	},
 

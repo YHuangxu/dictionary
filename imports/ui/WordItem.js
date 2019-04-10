@@ -38,14 +38,14 @@ class WordItem extends React.Component {
 					return;
 				}
 
-				console.log("Word inserted");
+				// console.log("WordItem component line 41: Word inserted to default list");
 
 				this.setState({
 					error: ""
 				});
 			});
-			
-			Meteor.call("defaultList.updateSearchTimes", word, err => {
+
+			Meteor.call("allSearchedWords.insert", word, content, err => {
 				if (err) {
 					this.setState({
 						error: err.reason
@@ -55,7 +55,7 @@ class WordItem extends React.Component {
 					return;
 				}
 
-				console.log("Word searching times updated");
+				// console.log("WordItem component line 58: Word inserted to allSearchedWords");
 
 				this.setState({
 					error: ""
@@ -70,9 +70,9 @@ class WordItem extends React.Component {
 		const segmentContent = (
 			<Card className="hvr-grow-shadow" centered>
 				<Card.Content>
-					
 					Definition: {this.props.word.definition}
-					<br/><br/>
+					<br />
+					<br />
 					{this.props.word.examples ? (
 						<Card.Description>
 							Example: {this.props.word.examples[0]}
@@ -109,47 +109,6 @@ class WordItem extends React.Component {
 					)}
 				</Card.Content>
 			</Card>
-
-			/*<Segment.Group stacked className="hvr-grow-shadow">
-				<Segment>Definition: {this.props.word.definition}</Segment>
-
-				{this.props.word.examples ? (
-					<Segment>
-						Example: {this.props.word.examples[0]}
-					</Segment>
-				) : (
-					undefined
-				)}
-
-				<Segment>
-					{this.props.user ? (
-						this.state.justSaved ? (
-							<Button basic color="red">
-								Saved
-							</Button>
-						) : (
-							<Button
-								basic
-								color="brown"
-								onClick={this.handleAddClick.bind(this)}
-							>
-								Save it to my list
-							</Button>
-						)
-					) : (
-						undefined
-					)}
-
-					{this.state.error && !this.props.user ? (
-						<Message negative>
-							<p>{this.state.error}</p>
-						</Message>
-					) : (
-						undefined
-					)}
-				</Segment>
-			</Segment.Group>
-		*/
 		);
 
 		return (
