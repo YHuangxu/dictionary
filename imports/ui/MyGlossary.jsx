@@ -40,11 +40,17 @@ class MyGlossary extends Component {
 	renderWords() {
 		return this.props.myWords.map(word => (
 			<Grid.Row key={word._id}>
-				<Grid.Column width={2}>{word.word}</Grid.Column>
-				<Grid.Column width={12}>
-					defination: {word.content.definition}
-					<br />
-					{word.content.example ? word.content.example : undefined}
+				<Grid.Column width={3}>{word.word}</Grid.Column>
+				<Grid.Column width={8}>
+					<hr />
+					Defination: {word.content.definition}
+					<hr />
+					{word.content.example
+						? "Example: " + word.content.example
+						: undefined}
+				</Grid.Column>
+				<Grid.Column width={3}>
+					Searching: {word.searchTimes}
 				</Grid.Column>
 				<Grid.Column width={2}>
 					<Button id={word._id} onClick={this.handleClick.bind(this)}>
@@ -70,9 +76,9 @@ class MyGlossary extends Component {
 					{this.props.myWords.length === 0 ? (
 						<div>
 							<p>You have not added words to your list.</p>
-							<br/>
-							<br/>
-							<br/>
+							<br />
+							<br />
+							<br />
 							<Link to="/">
 								<Button>Back to main</Button>
 							</Link>
