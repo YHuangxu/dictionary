@@ -33,10 +33,9 @@ Meteor.methods({
 		} else if (
 			game !== undefined &&
 			game.player1 !== this.userId &&
-			game.player2 === ""
-		) {
+			game.player2 === "") 
+		{
 			console.log("Join the existing game");
-
 			reviewLogic.joinGame(game);
 		}
 	}

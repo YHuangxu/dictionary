@@ -123,8 +123,8 @@ class MyGlossary extends Component {
 								/>
 								<Modal.Content>
 									<p>
-										Your list has less than 10 words. Do you
-										want to review by you own?
+										Your list has less than 10 words. You
+										need to review by you own.
 									</p>
 								</Modal.Content>
 								<Modal.Actions>
@@ -134,15 +134,7 @@ class MyGlossary extends Component {
 											this.setState({ modalOpen: false })
 										}
 									>
-										<Icon name="checkmark" /> Yes
-									</Button>
-									<Button
-										color="red"
-										onClick={() =>
-											this.setState({ modalOpen: false })
-										}
-									>
-										<Icon name="remove" /> No
+										<Icon name="checkmark" /> Alright {" "} 😔
 									</Button>
 								</Modal.Actions>
 							</Modal>
@@ -165,7 +157,7 @@ MyGlossary.propTypes = {
 
 export default withTracker(() => {
 	const handle = Meteor.subscribe("defaultList");
-
+	
 	return {
 		user: !!Meteor.user(),
 		myWords: DefaultList.find({
