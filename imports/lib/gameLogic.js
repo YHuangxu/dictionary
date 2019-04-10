@@ -1,7 +1,7 @@
 import { Meteor } from "meteor/meteor";
 import { Games } from "./games.js";
 
-class ReviewLogic {
+class gameLogic {
 	// remove a specified game form Games
 	removeGame(gameId) {
 		Games.remove({ _id: gameId });
@@ -40,4 +40,4 @@ class ReviewLogic {
 
 }
 
-export const reviewLogic = new ReviewLogic();
+export const reviewLogic = new gameLogic();

@@ -1,12 +1,16 @@
 import React from "react";
-import { Session } from "meteor/session";
-import { Meteor } from "meteor/meteor";
 import PropTypes from "prop-types";
-import { withTracker } from "meteor/react-meteor-data";
-import { Container, Button, Modal, Header, Icon } from "semantic-ui-react";
-import { Games } from "../api/games.js";
-import { DefaultList } from "../api/lists";
+
+import { Meteor } from "meteor/meteor";
 import { Link } from "react-router-dom";
+import { Session } from "meteor/session";
+import { withTracker } from "meteor/react-meteor-data";
+
+import { Container, Button, Modal, Header, Icon } from "semantic-ui-react";
+
+import { Games } from "../lib/games.js";
+import { DefaultList } from "../api/lists";
+
 
 class PlayGame extends React.Component {
 	constructor(props) {

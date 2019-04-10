@@ -1,6 +1,6 @@
 import { Mongo } from "meteor/mongo";
 import { Meteor } from "meteor/meteor";
-import { reviewLogic } from "./reviewLogic.js";
+import { reviewLogic } from "./gameLogic.js";
 
 
 export const Games = new Mongo.Collection("games");

@@ -3,8 +3,9 @@ import "../imports/api/users.js";
 import "../imports/api/lists.js";
 import "../imports/api/allSearchedWords.js";
 import "../imports/api/wordsAPI.js";
-import "../imports/api/games.js";
-import "../imports/api/reviewLogic.js";
+
+import "../imports/lib/games.js";
+import "../imports/lib/gameLogic.js";
 
 import { Meteor } from "meteor/meteor";
 import { DDPRateLimiter } from "meteor/ddp-rate-limiter";
