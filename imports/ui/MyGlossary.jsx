@@ -3,7 +3,14 @@ import { Meteor } from "meteor/meteor";
 import { DefaultList } from "../api/lists";
 import PropTypes from "prop-types";
 import { withTracker } from "meteor/react-meteor-data";
-import { Container, Grid, Button } from "semantic-ui-react";
+import {
+	Container,
+	Grid,
+	Button,
+	Header,
+	Icon,
+	Modal
+} from "semantic-ui-react";
 import "../api/lists";
 import NavigationBar from "./NavigationBar.jsx";
 import { Link } from "react-router-dom";
@@ -12,7 +19,8 @@ class MyGlossary extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			error: ""
+			error: "",
+			modalOpen: false
 		};
 	}
 
@@ -36,15 +44,34 @@ class MyGlossary extends Component {
 		});
 	}
 
+	// to detect if the user can join a multiplayer review game
+	handleReviewClick() {
+		const number = this.props.myWords.length;
+
+		if (number < 10) {
+			this.setState({
+				modalOpen: true
+			});
+		} else {
+			this.props.history.push("/review");
+		}
+	}
+
 	// render all words in the default list
 	renderWords() {
 		return this.props.myWords.map(word => (
 			<Grid.Row key={word._id}>
-				<Grid.Column width={2}>{word.word}</Grid.Column>
-				<Grid.Column width={12}>
-					defination: {word.content.definition}
-					<br />
-					{word.content.example ? word.content.example : undefined}
+				<Grid.Column width={3}>{word.word}</Grid.Column>
+				<Grid.Column width={8}>
+					<hr />
+					Defination: {word.content.definition}
+					<hr />
+					{word.content.example
+						? "Example: " + word.content.example
+						: undefined}
+				</Grid.Column>
+				<Grid.Column width={3}>
+					Searching: {word.searchTimes}
 				</Grid.Column>
 				<Grid.Column width={2}>
 					<Button id={word._id} onClick={this.handleClick.bind(this)}>
@@ -70,21 +97,50 @@ class MyGlossary extends Component {
 					{this.props.myWords.length === 0 ? (
 						<div>
 							<p>You have not added words to your list.</p>
-							<br/>
-							<br/>
-							<br/>
+							<br />
+							<br />
+							<br />
 							<Link to="/">
 								<Button>Back to main</Button>
 							</Link>
 						</div>
 					) : (
 						<Button.Group>
+							<Modal
+								trigger={
+									<Button
+										positive
+										onClick={() => this.handleReviewClick()}
+									>
+										Review
+									</Button>
+								}
+								open={this.state.modalOpen}
+							>
+								<Header
+									icon="info circle"
+									content="Word Hard, Play Harder"
+								/>
+								<Modal.Content>
+									<p>
+										Your list has less than 10 words. You
+										need to review by you own.
+									</p>
+								</Modal.Content>
+								<Modal.Actions>
+									<Button
+										color="green"
+										onClick={() =>
+											this.setState({ modalOpen: false })
+										}
+									>
+										<Icon name="checkmark" /> Alright {" "} 😔
+									</Button>
+								</Modal.Actions>
+							</Modal>
+							<Button.Or />
 							<Link to="/">
 								<Button>Back to main</Button>
-							</Link>
-							<Button.Or />
-							<Link to="/review">
-								<Button positive>Review</Button>
 							</Link>
 						</Button.Group>
 					)}
@@ -95,12 +151,13 @@ class MyGlossary extends Component {
 }
 
 MyGlossary.propTypes = {
-	myWords: PropTypes.arrayOf(PropTypes.object).isRequired
+	myWords: PropTypes.arrayOf(PropTypes.object).isRequired,
+	history: PropTypes.object.isRequired
 };
 
 export default withTracker(() => {
 	const handle = Meteor.subscribe("defaultList");
-
+	
 	return {
 		user: !!Meteor.user(),
 		myWords: DefaultList.find({

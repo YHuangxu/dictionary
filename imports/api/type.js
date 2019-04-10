@@ -12,10 +12,10 @@ export default class TypingAnimation extends Component {
 		const options = {
 			strings: [
 				"Search for: definition",
-				"Search for: explanation",
-				"Search for: denotation",
-				"Search for: interpretation",
-				"Search for: connotation"
+				"Search for: example",
+				"Review by gaming",
+				"Learn by playing",
+				"Have fun"
 			],
 			typeSpeed: 50,
 			backSpeed: 50,

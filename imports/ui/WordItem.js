@@ -44,6 +44,23 @@ class WordItem extends React.Component {
 					error: ""
 				});
 			});
+			
+			Meteor.call("defaultList.updateSearchTimes", word, err => {
+				if (err) {
+					this.setState({
+						error: err.reason
+					});
+
+					console.log("Error from meteor.call" + err);
+					return;
+				}
+
+				console.log("Word searching times updated");
+
+				this.setState({
+					error: ""
+				});
+			});
 		} else {
 			this.setState({ error: "You need to log in first." });
 		}
