@@ -49,7 +49,10 @@ export default class Login extends Component {
 			{
 				username: username,
 				email: email,
-				password: password
+				password: password,
+				profile: {
+					points: 0
+				}
 			},
 			err => {
 				if (err) {
