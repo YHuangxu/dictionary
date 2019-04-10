@@ -11,7 +11,7 @@ import ReviewGame from "../ui/ReviewGame.jsx";
 
 const browserHistory = createBrowserHistory();
 
-const authPages = ["/glossary", "/review"];
+const authPages = ["/glossary", "/challenge"];
 
 // Tracking auth status
 const authStatus = isLoggedin => {
@@ -34,7 +34,7 @@ export const renderRoutes = () => (
 
 			<Route exact path="/glossary" component={MyGlossary} />
 
-			<Route exact path="/review" component={ReviewGame} />
+			<Route exact path="/challenge" component={ReviewGame} />
 
 			<Route component={NotFound} />
 		</Switch>
