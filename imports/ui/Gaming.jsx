@@ -1,16 +1,20 @@
 import React from "react";
+import PropTypes from "prop-types";
+
 import { Meteor } from "meteor/meteor";
 import { Session } from "meteor/session";
-import PropTypes from "prop-types";
+import NavigationBar from "./NavigationBar.jsx";
 
 import { withTracker } from "meteor/react-meteor-data";
 import { Container } from "semantic-ui-react";
-import { Games } from "../api/games.js";
+
+import { Games } from "../lib/games.js";
 
 class Gaming extends React.Component {
 	render() {
 		return (
 			<Container>
+				<NavigationBar />
 				{this.props.gameEnded ? "Game End" : "Game playing"}
 			</Container>
 		);

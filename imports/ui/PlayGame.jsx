@@ -11,7 +11,6 @@ import { Container, Button, Modal, Header, Icon } from "semantic-ui-react";
 import { Games } from "../lib/games.js";
 import { DefaultList } from "../api/lists";
 
-
 class PlayGame extends React.Component {
 	constructor(props) {
 		super(props);
@@ -76,13 +75,12 @@ class PlayGame extends React.Component {
 				</Modal>
 				<div>
 					<span>Game Status</span> : <span>{this.props.status}</span>
+					{this.props.gameStarted ? (
+						<h4>Game playing......</h4>
+					) : (
+						<h4>Game not start</h4>
+					)}
 				</div>
-
-				{this.props.gameStarted ? (
-					<h4>game started!</h4>
-				) : (
-					<h4>Game not start</h4>
-				)}
 			</Container>
 		);
 	}
@@ -95,7 +93,6 @@ function setStatus() {
 		});
 
 		if (newGame !== undefined) {
-			
 			if (newGame.gameStatus === "waiting") {
 				return "Waiting for an opponent...";
 			} else if (newGame.gameStatus === "playing") {
