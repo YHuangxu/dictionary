@@ -42,8 +42,7 @@ function setStatus() {
 		});
 
 		if (newGame !== undefined) {
-			console.log("newGame.gameStatus: " + newGame.gameStatus);
-
+			
 			if (newGame.gameStatus === "waiting") {
 				return "Waiting for an opponent...";
 			} else if (newGame.gameStatus === "playing") {
@@ -73,8 +72,6 @@ function gameStarted() {
 			gameStatus: "playing",
 			$or: [{ player1: Meteor.userId() }, { player2: Meteor.userId() }]
 		});
-
-		console.log("gameStarted function. " + myGame);
 
 		if (myGame !== undefined) {
 			return true;
