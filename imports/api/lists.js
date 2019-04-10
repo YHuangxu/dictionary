@@ -22,8 +22,9 @@ Meteor.methods({
 		let definitionToCompare = content.definition;
 		console.log(definitionToCompare);
 
-		let hasData = DefaultList.find({ "content": {definition: definitionToCompare}}).fetch().length;
+		let hasData = DefaultList.find({ "content.definition": definitionToCompare}).fetch().length;
 		console.log("hasData: " + hasData);
+		console.log(DefaultList.find({ "content.definition": definitionToCompare}).fetch());
 
 		if (hasData === 0) {
 			DefaultList.insert({
@@ -44,7 +45,7 @@ Meteor.methods({
 
 		let needUpdate = DefaultList.find({ word: word }).fetch().length;
 		console.log("needUpdate: " + needUpdate);
-		
+
 		if (needUpdate !== 0) {
 			console.log(DefaultList.find({ word: word }));
 
