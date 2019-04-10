@@ -7,7 +7,7 @@ import GameDescription from "./GameDescription";
 
 import PlayGame from "./PlayGame.jsx";
 
-export default class ReviewGame extends React.Component {
+export default class ChallengeGame extends React.Component {
 	render() {
 		return (
 			<Container>

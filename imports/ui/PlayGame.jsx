@@ -23,7 +23,7 @@ class PlayGame extends React.Component {
 				modalOpen: true
 			});
 		} else {
-			console.log("Play button has been clicked!!!!!");
+			// console.log("Play button has been clicked!!!!!");
 			Session.set("inGame", true);
 			Meteor.call("game.play");
 			// Meteor.subscribe("MyGame");

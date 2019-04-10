@@ -44,8 +44,8 @@ class MyGlossary extends Component {
 		});
 	}
 
-	// to detect if the user can join a multiplayer review game
-	handleReviewClick() {
+	// to detect if the user can join a multiplayer challenge game
+	handleChallengeClick() {
 		const number = this.props.myWords.length;
 
 		if (number < 10) {
@@ -53,7 +53,7 @@ class MyGlossary extends Component {
 				modalOpen: true
 			});
 		} else {
-			this.props.history.push("/review");
+			this.props.history.push("/challenge");
 		}
 	}
 
@@ -110,9 +110,9 @@ class MyGlossary extends Component {
 								trigger={
 									<Button
 										positive
-										onClick={() => this.handleReviewClick()}
+										onClick={() => this.handleChallengeClick()}
 									>
-										Review
+										Challenge Game
 									</Button>
 								}
 								open={this.state.modalOpen}

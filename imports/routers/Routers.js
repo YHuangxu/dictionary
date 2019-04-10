@@ -7,7 +7,7 @@ import { Tracker } from "meteor/tracker";
 import App from "../ui/App.jsx";
 import NotFound from "../ui/NotFound.jsx";
 import MyGlossary from "../ui/MyGlossary.jsx";
-import ReviewGame from "../ui/ReviewGame.jsx";
+import ChallengeGame from "../ui/ChallengeGame.jsx";
 
 const browserHistory = createBrowserHistory();
 
@@ -34,7 +34,7 @@ export const renderRoutes = () => (
 
 			<Route exact path="/glossary" component={MyGlossary} />
 
-			<Route exact path="/challenge" component={ReviewGame} />
+			<Route exact path="/challenge" component={ChallengeGame} />
 
 			<Route component={NotFound} />
 		</Switch>
