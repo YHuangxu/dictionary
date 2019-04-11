@@ -38,8 +38,6 @@ class WordItem extends React.Component {
 					return;
 				}
 
-				// console.log("WordItem component line 41: Word inserted to default list");
-
 				this.setState({
 					error: ""
 				});
@@ -55,12 +53,29 @@ class WordItem extends React.Component {
 					return;
 				}
 
-				// console.log("WordItem component line 58: Word inserted to allSearchedWords");
+				this.setState({
+					error: ""
+				});
+			});
+
+			
+			Meteor.call("Questions.insert", word, content, err => {
+				if (err) {
+					this.setState({
+						error: err.reason
+					});
+
+					console.log("Error from meteor.call" + err);
+					return;
+				}
 
 				this.setState({
 					error: ""
 				});
 			});
+
+
+
 		} else {
 			this.setState({ error: "You need to log in first." });
 		}

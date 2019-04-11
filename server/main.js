@@ -3,6 +3,8 @@ import "../imports/api/users.js";
 import "../imports/api/lists.js";
 import "../imports/api/allSearchedWords.js";
 import "../imports/api/wordsAPI.js";
+import "../imports/api/Questions.js";
+
 import { UserStatus } from "meteor/mizzao:user-status";
 
 import { Games } from "../imports/lib/games.js";

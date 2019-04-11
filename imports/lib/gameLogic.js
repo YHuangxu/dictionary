@@ -2,7 +2,6 @@ import { Meteor } from "meteor/meteor";
 import { Games } from "./games.js";
 
 class GameLogic {
-
 	// start a new game
 	newGame() {
 		const game = Games.findOne({
@@ -36,17 +35,24 @@ class GameLogic {
 
 	// set game result
 	setGameResult(gameId, result) {
-		Games.update({_id: gameId}, {
-			$set: {
-				gameStatus: "gameover",
-				gameWinner: result
+		Games.update(
+			{ _id: gameId },
+			{
+				$set: {
+					gameStatus: "gameover",
+					gameWinner: result
+				}
 			}
-		});
+		);
 	}
 
 	// remove a specified game form Games
 	removeGame(gameId) {
 		Games.remove({ _id: gameId });
+	}
+
+	removePlayer(gameId, player) {
+		Games.update({ _id: gameId }, { $set: { [player]: "" } });
 	}
 }
 
