@@ -136,7 +136,7 @@ function gameStarted() {
 PlayGame.propTypes = {
 	status: PropTypes.string,
 	gameStarted: PropTypes.bool,
-	myWords: PropTypes.arrayOf(PropTypes.object).isRequired
+	myWords: PropTypes.arrayOf(PropTypes.object).isRequireds
 };
 
 export default withTracker(() => {
