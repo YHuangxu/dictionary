@@ -1,13 +1,18 @@
 import { Mongo } from "meteor/mongo";
 import { Meteor } from "meteor/meteor";
-import { reviewLogic } from "./gameLogic.js";
-
+import { gameLogic } from "./gameLogic.js";
 
 export const Games = new Mongo.Collection("games");
 
 if (Meteor.isServer) {
-	Meteor.publish("games", function() {
+	Meteor.publish("Games", function gamesPublication() {
 		return Games.find();
+	});
+
+	Meteor.publish("MyGame", function myGamesPublication() {
+		return Games.find({
+			$or: [{ player1: this.userId }, { player2: this.userId }]
+		});
 	});
 }
 
@@ -19,7 +24,7 @@ Meteor.methods({
 			$or: [{ player1: Meteor.userId() }, { player2: Meteor.userId() }]
 		});
 		if (endGame !== undefined) {
-			reviewLogic.removeGame(endGame._id);
+			gameLogic.removeGame(endGame._id);
 		}
 
 		// find a waiting game
@@ -27,16 +32,15 @@ Meteor.methods({
 		const game = Games.findOne({ gameStatus: "waiting" });
 
 		if (game === undefined) {
-			console.log("Starting a new Game");
 
-			reviewLogic.newGame();
+			gameLogic.newGame();
 		} else if (
 			game !== undefined &&
 			game.player1 !== this.userId &&
-			game.player2 === "") 
-		{
-			console.log("Join the existing game");
-			reviewLogic.joinGame(game);
+			game.player2 === ""
+		) {
+			
+			gameLogic.joinGame(game);
 		}
 	}
 });

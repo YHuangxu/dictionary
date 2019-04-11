@@ -10,10 +10,8 @@ import { Container, Grid, Card, Button } from "semantic-ui-react";
 
 import { Games } from "../lib/games.js";
 import { allSearchedWords } from "../api/allSearchedWords.js";
-<<<<<<< HEAD
-import { users } from "../api/updatePoints.js";
-class Gaming extends React.Component {
 
+class Gaming extends React.Component {
 	handleClick(event) {
 		if (event.target.value == "correct answer") {
 			// +10
@@ -41,25 +39,6 @@ class Gaming extends React.Component {
 	}
 
 	renderCards() {
-		// return this.props.wordsDataSet.map(word => (
-		// 	<Card>
-		// 		<Card.Content header="Word Definition" />
-		// 		<Card.Content> {} </Card.Content>
-		// 		<Card.Content extra>
-		// 			<Button id="choice1" onClick={() => this.handleClick()}>1</Button>
-		// 			<Button id="choice2" onClick={() => this.handleClick()}>1</Button>
-		// 			<Button id="choice3" onClick={() => this.handleClick()}>1</Button>
-		// 		</Card.Content>
-		// 	</Card>
-		// ));
-=======
-
-class Gaming extends React.Component {
-	renderCards() {
-
-		console.log(this.props.questionAndChoices);
-		console.log(this.props.questionAndAnswer);
-
 		let questionsArray = Array.from(this.props.questionAndChoices.keys());
 
 		if (this.props.ready) {
@@ -81,31 +60,23 @@ class Gaming extends React.Component {
 				</Card>
 			));
 		}
->>>>>>> f81a09a076df1d79d14f8b419cff0cf97f947102
 	}
 
 	render() {
 		return (
 			<Container>
 				<NavigationBar />
-				{this.props.gameEnded ? "Game End" : "Game playing"}
 
 				<Grid celled centered textAlign="center">
 					<Grid.Row>
 						<Grid.Column width={4}>
-							<div>
-								user1: {this.props.user1.username}
-								points: {this.props.user1.points}
-							</div>
+							<div>user1: karen points: 0</div>
 						</Grid.Column>
 						<Grid.Column width={8}>
 							{this.renderCards()}
 						</Grid.Column>
 						<Grid.Column width={4}>
-							<div>
-								user2: {this.props.user1.username}
-								points: {this.props.user1.points}
-							</div>
+							<div>user2: freddy points: 0</div>
 						</Grid.Column>
 					</Grid.Row>
 				</Grid>
@@ -116,15 +87,11 @@ class Gaming extends React.Component {
 
 Gaming.propTypes = {
 	gameEnded: PropTypes.bool.isRequired,
-<<<<<<< HEAD
-	user1: PropTypes.object.isRequired,
-	user2: PropTypes.object.isRequired
-=======
+	// users: PropTypes.any.isRequired,
 	randomWordsArray: PropTypes.arrayOf(PropTypes.object).isRequired,
 	questionAndAnswer: PropTypes.any.isRequired,
 	questionAndChoices: PropTypes.any.isRequired,
 	ready: PropTypes.bool.isRequired
->>>>>>> f81a09a076df1d79d14f8b419cff0cf97f947102
 };
 
 function gameEnded() {
@@ -205,30 +172,39 @@ function getQuestionsAndChoices(arr, uniquewords) {
 	return questionAndChoices;
 }
 
+// function getUsers() {
+// 	let game = Games.findOne({
+// 		$and: [
+// 			{ gameStatus: "playing" },
+// 			{
+// 				$or: [
+// 					{
+// 						player1: Meteor.userId()
+// 					},
+// 					{
+// 						player2: Meteor.userId()
+// 					}
+// 				]
+// 			}
+// 		]
+// 	});
+
+// 	// console.log(game);
+
+// 	// if (game !== undefined) {
+// 	// 	let user1 = Meteor.users.findOne({ _id: game.player1 }).username;
+// 	// 	let user2 = Meteor.users.findOne({ _id: game.player2 }).username;
+
+// 	// 	console.log(user1);
+// 	// 	console.log(user2);
+// 	// }
+
+// 	return game;
+// }
+
 export default withTracker(() => {
-	const handle = Meteor.subscribe("games");
-	Meteor.subscribe("users");
-
+	const handle = Meteor.subscribe("Games");
 	Meteor.subscribe("allSearchedWords");
-<<<<<<< HEAD
-	let uniqueWords = new Set(allSearchedWords.find({}).fetch());
-
-	let user1 = users.find({_id: Games.player1});
-	let user2 = users.find({_id: Games.player2});
-
-	// let points1 = user1.points;
-	// let points2 = user2.points;
-
-	// let username1 = user1.username;
-	// let username2 = user2.username;
-
-	return {
-		gameEnded: gameEnded(),
-		ready: handle.ready(),
-		wordsDataSet: uniqueWords,
-		user1: user1,
-		user2: user2
-=======
 
 	let dataSet = allSearchedWords.find({}).fetch();
 	let wordsSet = new Set();
@@ -245,6 +221,5 @@ export default withTracker(() => {
 			Array.from(wordsSet)
 		),
 		ready: handle.ready()
->>>>>>> f81a09a076df1d79d14f8b419cff0cf97f947102
 	};
 })(Gaming);

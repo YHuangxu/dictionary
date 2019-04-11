@@ -26,10 +26,9 @@ class PlayGame extends React.Component {
 				modalOpen: true
 			});
 		} else {
-			// console.log("Play button has been clicked!!!!!");
 			Session.set("inGame", true);
 			Meteor.call("game.play");
-			// Meteor.subscribe("MyGame");
+			Meteor.subscribe("MyGame");
 		}
 	}
 
@@ -136,11 +135,11 @@ function gameStarted() {
 PlayGame.propTypes = {
 	status: PropTypes.string,
 	gameStarted: PropTypes.bool,
-	myWords: PropTypes.arrayOf(PropTypes.object).isRequireds
+	myWords: PropTypes.arrayOf(PropTypes.object).isRequired
 };
 
 export default withTracker(() => {
-	const handle = Meteor.subscribe("games");
+	const handle = Meteor.subscribe("Games");
 	Meteor.subscribe("defaultList");
 
 	return {
