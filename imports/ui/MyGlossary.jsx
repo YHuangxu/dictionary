@@ -174,6 +174,10 @@ export default withTracker(() => {
 		user: !!Meteor.user(),
 		myWords: DefaultList.find({
 			userId: Meteor.userId()
+		}, {
+			sort: {
+				"searchTimes" : -1
+			}
 		}).fetch(),
 		ready: handle.ready()
 	};
