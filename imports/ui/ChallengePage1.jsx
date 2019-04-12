@@ -78,7 +78,7 @@ class ChallengeGame extends React.Component {
 			</Modal>
 		);
 	}
-
+	
 	render() {
 		return (
 			<Container textAlign="center">

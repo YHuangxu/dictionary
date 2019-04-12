@@ -4,6 +4,7 @@ import "../imports/api/lists.js";
 import "../imports/api/allSearchedWords.js";
 import "../imports/api/wordsAPI.js";
 import "../imports/api/Questions.js";
+import "../imports/api/userPoints.js";
 
 import { UserStatus } from "meteor/mizzao:user-status";
 

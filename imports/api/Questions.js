@@ -1,14 +1,12 @@
 import { Meteor } from "meteor/meteor";
 import { Mongo } from "meteor/mongo";
 import { check } from "meteor/check";
-
 import { allSearchedWords } from "./allSearchedWords.js";
 
 export const Questions = new Mongo.Collection("Questions");
 
 if (Meteor.isServer) {
-
-	Meteor.publish("Questions", function() {
+	Meteor.publish("Questions", function publishQuestions() {
 		return Questions.find();
 	});
 }
