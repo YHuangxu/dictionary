@@ -2,16 +2,19 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import { Meteor } from "meteor/meteor";
+import { Session } from "meteor/session";
+
 import NavigationBar from "./NavigationBar.jsx";
-import GoChallenge from "./GoChallenge.jsx";
 import Quiz from "./Quiz.jsx";
 import Result from "./Quiz.jsx";
 
 import { withTracker } from "meteor/react-meteor-data";
-import { Container } from "semantic-ui-react";
 
 import { Questions } from "../api/Questions.js";
+import { Games } from "../lib/games.js";
+import { DefaultList } from "../api/lists";
 
+import { Container, Button } from "semantic-ui-react";
 
 class ChallengeQuiz extends React.Component {
 	constructor(props) {
@@ -70,11 +73,10 @@ class ChallengeQuiz extends React.Component {
 		} else {
 			setTimeout(() => this.setResults(), 300);
 		}
-
 	}
-	
+
 	setResults() {
-		this.setState({ result: "You got " + this.state.points + " points!"});
+		this.setState({ result: "You got " + this.state.points + " points!" });
 	}
 
 	setNextQuestion() {
@@ -119,16 +121,32 @@ class ChallengeQuiz extends React.Component {
 		return <Result quizResult={this.state.result} />;
 	}
 
+	handleClick() {
+		Session.set("inGame", true);
+		Meteor.call("game.play");
+		Meteor.subscribe("MyGame");
+	}
+
 	render() {
 		return (
 			<Container>
 				<NavigationBar />
-				<GoChallenge />
-				
-				<hr/>
+				<div>
+					<Button positive onClick={this.handleClick.bind(this)}>
+						Play!
+					</Button>
+					<span>Game Status</span> : <span>{this.props.status}</span>
+				</div>
+
+				<hr />
 
 				{this.state.result}
-				{this.renderQuiz()}
+
+				{this.props.gameStarted ? (
+					this.renderQuiz()
+				) : (
+					undefined
+				)}
 				
 			</Container>
 		);
@@ -137,6 +155,9 @@ class ChallengeQuiz extends React.Component {
 
 ChallengeQuiz.propTypes = {
 	questions: PropTypes.arrayOf(PropTypes.object).isRequired,
+	status: PropTypes.string,
+	gameStarted: PropTypes.bool,
+	myWords: PropTypes.arrayOf(PropTypes.object).isRequired,
 	ready: PropTypes.bool.isRequired
 };
 
@@ -158,7 +179,57 @@ function getRandomArrayElements(arr, num) {
 	return return_array;
 }
 
+function gameStarted() {
+	if (Session.get("inGame")) {
+		let myGame = Games.findOne({
+			gameStatus: "playing",
+			$or: [{ player1: Meteor.userId() }, { player2: Meteor.userId() }]
+		});
+
+		if (myGame !== undefined) {
+			return true;
+		} else {
+			return false;
+		}
+	} else {
+		return false;
+	}
+}
+
+function setStatus() {
+	if (Session.get("inGame")) {
+		let newGame = Games.findOne({
+			$or: [{ player1: Meteor.userId() }, { player2: Meteor.userId() }]
+		});
+
+		if (newGame !== undefined) {
+			if (newGame.gameStatus === "waiting") {
+				return "Waiting for an opponent...";
+			} else if (newGame.gameStatus === "playing") {
+				return "Game playing...";
+			} else if (newGame.gameStatus === "gameover") {
+				if (newGame.gameWinner === Meteor.userId()) {
+					return "You win!";
+					// return points!
+				} else if (newGame.gameWinner !== Meteor.userId()) {
+					return "You lost!";
+					//return points1
+				} else if (newGame.gameWinner === "tie") {
+					return "Tie";
+				}
+			}
+		} else {
+			return "Click play to start!";
+		}
+	} else {
+		return "Click play to start!";
+	}
+}
+
 export default withTracker(() => {
+	Meteor.subscribe("Games");
+	Meteor.subscribe("defaultList");
+
 	const handle = Meteor.subscribe("Questions");
 	let questions = Questions.find({}).fetch();
 
@@ -166,6 +237,11 @@ export default withTracker(() => {
 
 	return {
 		questions: randomQuestions,
+		status: setStatus(),
+		gameStarted: gameStarted(),
+		myWords: DefaultList.find({
+			userId: Meteor.userId()
+		}).fetch(),
 		ready: handle.ready()
 	};
 })(ChallengeQuiz);
