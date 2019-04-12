@@ -53,8 +53,8 @@ class ChallengeGame extends React.Component {
 				<Header icon="info circle" content="Word Hard, Play Harder" />
 				<Modal.Content>
 					<p>
-						Your list has less than 10 words. Do you want to review
-						by you own?
+						Your list has less than 10 words. Add more to your list
+						to join the challenge game.
 					</p>
 				</Modal.Content>
 				<Modal.Actions>
@@ -78,7 +78,7 @@ class ChallengeGame extends React.Component {
 			</Modal>
 		);
 	}
-	
+
 	render() {
 		return (
 			<Container textAlign="center">

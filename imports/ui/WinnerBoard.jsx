@@ -2,7 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Meteor } from "meteor/meteor";
 import { withTracker } from "meteor/react-meteor-data";
-import { Grid, Container } from "semantic-ui-react";
+import { Grid, Container, Button } from "semantic-ui-react";
+import {Link} from "react-router-dom";
 
 class WinnerBoard extends React.Component {
 	renderUserDate() {
@@ -21,6 +22,9 @@ class WinnerBoard extends React.Component {
 			<Container>
 				<div>WinnerBoard!</div>
 				<Grid centered>{this.renderUserDate()}</Grid>
+				<Link to="/">
+					<Button>Back to main</Button>
+				</Link>
 			</Container>
 		);
 	}

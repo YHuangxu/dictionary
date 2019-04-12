@@ -80,6 +80,11 @@ class NavigationBar extends Component {
 					{Meteor.user() ? "" : this.displayLogin()}
 					{this.props.user ? this.displayDropdown() : ""}
 				</Menu.Menu>
+				<Link to="/winnerboard">
+					<Button basic className="hvr-ripple-out" size="mini">
+						Winner Board
+					</Button>
+				</Link>
 			</Menu>
 		);
 	}

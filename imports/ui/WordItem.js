@@ -58,7 +58,6 @@ class WordItem extends React.Component {
 				});
 			});
 
-			
 			Meteor.call("Questions.insert", word, content, err => {
 				if (err) {
 					this.setState({
@@ -73,9 +72,6 @@ class WordItem extends React.Component {
 					error: ""
 				});
 			});
-
-
-
 		} else {
 			this.setState({ error: "You need to log in first." });
 		}
@@ -83,7 +79,7 @@ class WordItem extends React.Component {
 
 	render() {
 		const segmentContent = (
-			<Card className="hvr-grow-shadow" centered>
+			<Card className="hvr-grow-shadow" centered fluid>
 				<Card.Content>
 					Definition: {this.props.word.definition}
 					<br />
@@ -96,7 +92,7 @@ class WordItem extends React.Component {
 						undefined
 					)}
 				</Card.Content>
-				<Card.Content extra>
+				<Card.Content extra textAlign="center">
 					{this.props.user ? (
 						this.state.justSaved ? (
 							<Button basic color="red">
@@ -104,8 +100,7 @@ class WordItem extends React.Component {
 							</Button>
 						) : (
 							<Button
-								basic
-								color="brown"
+								color="blue"
 								onClick={this.handleAddClick.bind(this)}
 							>
 								Save it to my list
@@ -126,6 +121,11 @@ class WordItem extends React.Component {
 			</Card>
 		);
 
+		const style = {
+			borderRadius: 25,
+			opacity: 0.7
+		};
+
 		return (
 			<div>
 				{this.props.user ? (
@@ -135,7 +135,11 @@ class WordItem extends React.Component {
 						</Popup.Header>
 					</Popup>
 				) : (
-					<Popup trigger={segmentContent}>
+					<Popup
+						trigger={segmentContent}
+						style={style}
+						position="top right"
+					>
 						<Popup.Header>
 							Log in to save it to your list
 						</Popup.Header>
