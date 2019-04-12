@@ -55,7 +55,7 @@ class MyGlossary extends Component {
 			<Grid.Row key={word._id}>
 				<Grid.Column width={3} id="glossaryCol" stretched>
 					{word.word}
-					<p id="savedTimes">Saved: {word.searchTimes}</p>
+					<p className="savedTimes">Saved: {word.searchTimes}</p>
 				</Grid.Column>
 				<Grid.Column width={8}>
 					<p>

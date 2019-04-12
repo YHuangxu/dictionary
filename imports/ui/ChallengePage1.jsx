@@ -78,10 +78,11 @@ class ChallengeGame extends React.Component {
 					<NavigationBar className="header" />
 				</header>
 
-				<GameDescription />
-
-				<br />
-				{this.modalCheck()}
+				<main>
+					<GameDescription />
+					<br />
+					{this.modalCheck()}
+				</main>
 			</Container>
 		);
 	}
