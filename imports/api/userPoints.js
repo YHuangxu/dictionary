@@ -1,10 +1,9 @@
 import { Meteor } from "meteor/meteor";
 
-export const Users = Meteor.users;
 
 if (Meteor.isServer) {
-	Meteor.publish("userPoints", function() {
-		return Users.find(
+	Meteor.publish("userData", function publishUserdata() {
+		return Meteor.users.find(
 			{},
 			{
 				fields: {
@@ -25,4 +24,3 @@ Meteor.methods({
 		Meteor.users.update(id, { $inc: { "profile.points": points } });
 	}
 });
-
