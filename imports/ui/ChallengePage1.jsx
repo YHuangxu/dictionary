@@ -32,24 +32,30 @@ class ChallengeGame extends React.Component {
 
 	render() {
 		return (
-			<Container>
+			<Container textAlign="center">
 				<header>
 					<NavigationBar className="header" />
 				</header>
 
 				<GameDescription />
 
-				<Link to="/glossary">Back my Word List</Link>
 				<br />
 
 				<Modal
 					trigger={
-						<Button
-							positive
-							onClick={() => this.handleChallengeClick()}
-						>
-							Go To Challenge
-						</Button>
+						<Button.Group>
+							<Button
+								positive
+								onClick={() => this.handleChallengeClick()}
+							>
+								Go To Challenge
+							</Button>
+							<Button.Or />
+							<Link to="/glossary">
+								{" "}
+								<Button>Back my Word List</Button>
+							</Link>
+						</Button.Group>
 					}
 					open={this.state.modalOpen}
 				>
