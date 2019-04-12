@@ -30,9 +30,54 @@ class ChallengeGame extends React.Component {
 		}
 	}
 
-	// modalCheck() {
-
-	// }
+	modalCheck() {
+		return (
+			<Modal
+				trigger={
+					<Button.Group>
+						<Button
+							positive
+							onClick={() => this.handleChallengeClick()}
+						>
+							Go To Challenge
+						</Button>
+						<Button.Or />
+						<Link to="/glossary">
+							{" "}
+							<Button>Back my Word List</Button>
+						</Link>
+					</Button.Group>
+				}
+				open={this.state.modalOpen}
+			>
+				<Header icon="info circle" content="Word Hard, Play Harder" />
+				<Modal.Content>
+					<p>
+						Your list has less than 10 words. Do you want to review
+						by you own?
+					</p>
+				</Modal.Content>
+				<Modal.Actions>
+					<Link to="/glossary">
+						<Button
+							color="green"
+							onClick={() => this.setState({ modalOpen: false })}
+						>
+							<Icon name="checkmark" /> Yes
+						</Button>
+					</Link>
+					<Link to="/">
+						<Button
+							color="red"
+							onClick={() => this.setState({ modalOpen: false })}
+						>
+							<Icon name="remove" /> No
+						</Button>
+					</Link>
+				</Modal.Actions>
+			</Modal>
+		);
+	}
 
 	render() {
 		return (
@@ -44,58 +89,7 @@ class ChallengeGame extends React.Component {
 				<GameDescription />
 
 				<br />
-
-				<Modal
-					trigger={
-						<Button.Group>
-							<Button
-								positive
-								onClick={() => this.handleChallengeClick()}
-							>
-								Go To Challenge
-							</Button>
-							<Button.Or />
-							<Link to="/glossary">
-								{" "}
-								<Button>Back my Word List</Button>
-							</Link>
-						</Button.Group>
-					}
-					open={this.state.modalOpen}
-				>
-					<Header
-						icon="info circle"
-						content="Word Hard, Play Harder"
-					/>
-					<Modal.Content>
-						<p>
-							Your list has less than 10 words. Do you want to
-							review by you own?
-						</p>
-					</Modal.Content>
-					<Modal.Actions>
-						<Link to="/glossary">
-							<Button
-								color="green"
-								onClick={() =>
-									this.setState({ modalOpen: false })
-								}
-							>
-								<Icon name="checkmark" /> Yes
-							</Button>
-						</Link>
-						<Link to="/">
-							<Button
-								color="red"
-								onClick={() =>
-									this.setState({ modalOpen: false })
-								}
-							>
-								<Icon name="remove" /> No
-							</Button>
-						</Link>
-					</Modal.Actions>
-				</Modal>
+				{this.modalCheck()}
 			</Container>
 		);
 	}

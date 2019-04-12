@@ -5,17 +5,18 @@ class AnswerOption extends React.Component {
 	render() {
 		return (
 			<li className="answerOption">
-				<input
-					type="radio"
-					className="radioCustomButton"
-					name="radioGroup"
-					checked={this.props.answerType === this.props.answer}
-					value={this.props.answerType}
-					disabled={!!this.props.answer}
-					onChange={this.props.onAnswerSelected}
-				/>
 				<label className="radioCustomLabel">
 					{this.props.answerContent}
+					<input
+						type="radio"
+						className="radioCustomButton"
+						name="radioGroup"
+						checked={this.props.answerType === this.props.answer}
+						value={this.props.answerType}
+						disabled={!!this.props.answer}
+						onChange={this.props.onAnswerSelected}
+					/>
+					<span className="checkmark"></span>
 				</label>
 			</li>
 		);
