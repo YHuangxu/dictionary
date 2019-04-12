@@ -11,7 +11,7 @@ import ChallengeQuiz from "./ChallengeQuiz.jsx";
 import { Games } from "../lib/games.js";
 import { DefaultList } from "../api/lists";
 
-import { Container, Button} from "semantic-ui-react";
+import { Container, Button } from "semantic-ui-react";
 
 class ChallengePage2 extends React.Component {
 	handleClick() {
@@ -24,17 +24,20 @@ class ChallengePage2 extends React.Component {
 		return (
 			<Container>
 				<NavigationBar />
-				<div>
+				<div className="gameStatus">
 					<Button positive onClick={this.handleClick.bind(this)}>
 						Play!
 					</Button>
-					<span>Game Status</span> : <span>{this.props.status}</span>
+					<br/>
+					<p>
+						<span>Game Status</span> :{" "}
+						<span>{this.props.status}</span>
+					</p>
 				</div>
 
 				<hr />
-				
-				{this.props.gameStarted ? <ChallengeQuiz /> : undefined}
-				
+
+				<ChallengeQuiz />
 			</Container>
 		);
 	}
@@ -44,7 +47,7 @@ ChallengePage2.propTypes = {
 	status: PropTypes.string,
 	gameStarted: PropTypes.bool,
 	myWords: PropTypes.arrayOf(PropTypes.object).isRequired,
-	history: PropTypes.object.isRequired,
+	history: PropTypes.object.isRequired
 };
 
 function gameStarted() {

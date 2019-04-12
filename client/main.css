@@ -3,6 +3,11 @@ body {
   font-family: sans-serif;
 }
 
+#mainPageCard {
+  font-family: "Noto Serif", serif;
+  color: black;
+}
+
 #searchBar {
   border-radius: 50px;
   margin-bottom: 1.5em;
@@ -11,6 +16,33 @@ body {
 #typingContent {
   font-size: 30px;
   font-family: "Damion", cursive;;
+}
+
+.exam {
+  margin: auto;
+  margin-top: 5px;
+  width: 70%;
+  padding: 10px;
+  border: 1px solid #eee;
+}
+
+.gameStatus {
+  text-align: center;
+}
+
+.glossary {
+  font-family: "Noto Serif", serif;
+  font-size: 19px;
+  text-align: left;
+}
+#glossaryCol {
+  text-align: right;
+  font-weight: bold;
+}
+#savedTimes {
+  font-weight: normal;
+  color: rgba(0,0,0,0.4);
+  font-size: 16px;
 }
 
 /* AnswerOption Component */
@@ -40,7 +72,7 @@ body {
   width: 100%;
   margin: 0;
   padding: 1.5rem 2.5rem 1.5rem 5rem;
-  font-size: 16px;
+  font-size: 20px;
   line-height: 1.5;
 }
 
@@ -72,18 +104,22 @@ body {
   margin: 0;
   padding: 0;
   list-style: none;
+  font-family: "Noto Serif", serif;
 }
 
 /* QuestionCount Component */
 .questionCount {
   padding: 1.5rem 2.5rem 0;
-  font-size: 14px;
+  font-size: 18px;
+  font-family: "Noto Serif", serif;
 }
 
 /* Question Component */
 .question {
   margin: 0;
   padding: 0.5rem 2.5rem 1.5rem 2.5rem;
+  font-family: "Noto Serif", serif;
+  font-weight: bold;
 }
 
 /*Effect for definition of the searching word*/

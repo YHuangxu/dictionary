@@ -18,7 +18,7 @@ import { WebApp } from "meteor/webapp";
 WebApp.addHtmlAttributeHook(() => ({ lang: "en" }));
 
 // Get list of all method names on Lists
-const LISTS_METHODS = ["defaultList.insert", "defaultList.remove", "getData"];
+const LISTS_METHODS = ["user.pointsUpdate","Questions.insert","allSearchedWords.insert","defaultList.insert", "defaultList.remove", "getData"];
 
 // Only allow 5 list operations per connection per second
 if (Meteor.isServer) {

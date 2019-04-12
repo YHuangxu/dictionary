@@ -23,11 +23,12 @@ class Quiz extends React.Component {
 
 	render() {
 		return (
-			<div key={this.props.questionId}>
+			<div className="exam" key={this.props.questionId}>
 				<QuestionCount
 					counter={this.props.questionId}
 					total={this.props.questionTotal}
 				/>
+				<br/>
 				{this.renderQuestion()}
 
 				<ul className="answerOptions">{this.renderAnswerOptions()}</ul>

@@ -79,7 +79,7 @@ class WordItem extends React.Component {
 
 	render() {
 		const segmentContent = (
-			<Card className="hvr-grow-shadow" centered fluid>
+			<Card className="hvr-grow-shadow" id="mainPageCard" centered fluid>
 				<Card.Content>
 					Definition: {this.props.word.definition}
 					<br />
@@ -123,7 +123,8 @@ class WordItem extends React.Component {
 
 		const style = {
 			borderRadius: 25,
-			opacity: 0.7
+			opacity: 0.7,
+			background: "#27EB65"
 		};
 
 		return (

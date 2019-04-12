@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, Dropdown, Menu, Image } from "semantic-ui-react";
+import { Button, Dropdown, Menu, Image, Icon } from "semantic-ui-react";
 import { Meteor } from "meteor/meteor";
 import Login from "./Login.jsx";
 import { Accounts } from "meteor/accounts-base";
@@ -28,7 +28,7 @@ class NavigationBar extends Component {
 		return (
 			<Menu.Item>
 				<Button
-					basic
+					color="blue"
 					className="hvr-ripple-out"
 					onClick={this.handleClick.bind(this)}
 				>
@@ -42,7 +42,7 @@ class NavigationBar extends Component {
 	displayDropdown() {
 		return (
 			<Menu.Item>
-				<Dropdown text={"Welcome: " + Meteor.user().username}>
+				<Dropdown text={"Welcome: " + Meteor.user().username + "  "} item>
 					<Dropdown.Menu>
 						<Link to="/glossary">
 							<Dropdown.Item icon="folder" text="My Lists" />
@@ -80,11 +80,22 @@ class NavigationBar extends Component {
 					{Meteor.user() ? "" : this.displayLogin()}
 					{this.props.user ? this.displayDropdown() : ""}
 				</Menu.Menu>
-				<Link to="/winnerboard">
-					<Button basic className="hvr-ripple-out" size="mini">
-						Winner Board
-					</Button>
-				</Link>
+
+				<Menu.Menu>
+					<Menu.Item>
+						<Link to="/winnerboard">
+							<Button
+								color="red"
+								className="hvr-ripple-out"
+								icon
+							>
+								<Icon name='winner' />
+								&nbsp;
+								Winner Board
+							</Button>
+						</Link>
+					</Menu.Item>
+				</Menu.Menu>
 			</Menu>
 		);
 	}

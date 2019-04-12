@@ -61,20 +61,29 @@ class MyGlossary extends Component {
 	renderWords() {
 		return this.props.myWords.map(word => (
 			<Grid.Row key={word._id}>
-				<Grid.Column width={3}>{word.word}</Grid.Column>
+				<Grid.Column width={3} id="glossaryCol" stretched>
+					{word.word}
+					<p id="savedTimes">Saved: {word.searchTimes}</p>
+				</Grid.Column>
 				<Grid.Column width={8}>
-					<hr />
-					Defination: {word.content.definition}
-					<hr />
-					{word.content.example
-						? "Example: " + word.content.example
-						: undefined}
+					<p>
+						<span>Defination</span>: {word.content.definition}
+					</p>
+					<br/>
+					<p>
+						{word.content.example
+							? "Example: " + word.content.example
+							: undefined}
+					</p>
 				</Grid.Column>
-				<Grid.Column width={3}>
-					Searching: {word.searchTimes}
-				</Grid.Column>
+
 				<Grid.Column width={2}>
-					<Button id={word._id} onClick={this.handleClick.bind(this)}>
+					<Button
+						size="mini"
+						color="yellow"
+						id={word._id}
+						onClick={this.handleClick.bind(this)}
+					>
 						Remove
 					</Button>
 				</Grid.Column>
@@ -90,7 +99,7 @@ class MyGlossary extends Component {
 				</header>
 				<br />
 				<main>
-					<Grid columns="two" divided>
+					<Grid centered columns="two" divided className="glossary">
 						{this.renderWords()}
 					</Grid>
 					<br />

@@ -3,9 +3,8 @@ import PropTypes from "prop-types";
 import { Meteor } from "meteor/meteor";
 import { withTracker } from "meteor/react-meteor-data";
 import Quiz from "./Quiz.jsx";
-import Result from "./Quiz.jsx";
 import { Questions } from "../api/Questions.js";
-import { Container } from "semantic-ui-react";
+import { Container, Message, Grid } from "semantic-ui-react";
 
 class ChallengeQuiz extends React.Component {
 	constructor(props) {
@@ -65,7 +64,11 @@ class ChallengeQuiz extends React.Component {
 			setTimeout(() => this.setResults(), 300);
 			// set game status and winner
 			Meteor.call("game.update", Meteor.userId());
-			Meteor.call("user.pointsUpdate", Meteor.userId(), this.state.points);
+			Meteor.call(
+				"user.pointsUpdate",
+				Meteor.userId(),
+				this.state.points
+			);
 		}
 	}
 
@@ -113,14 +116,21 @@ class ChallengeQuiz extends React.Component {
 		);
 	}
 
-	renderResult() {
-		return <Result quizResult={this.state.result} />;
-	}
-
 	render() {
 		return (
 			<Container>
-				{this.state.result}
+				<Grid centered columns="equal">
+					<Grid.Column width={8}>
+						{this.state.result ? (
+							<Message
+								icon="bullhorn"
+								header={this.state.result}
+							/>
+						) : (
+							undefined
+						)}
+					</Grid.Column>
+				</Grid>
 				{this.renderQuiz()}
 			</Container>
 		);
