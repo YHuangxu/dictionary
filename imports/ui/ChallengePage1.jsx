@@ -58,20 +58,12 @@ class ChallengeGame extends React.Component {
 					</p>
 				</Modal.Content>
 				<Modal.Actions>
-					<Link to="/glossary">
+					<Link to="/">
 						<Button
 							color="green"
 							onClick={() => this.setState({ modalOpen: false })}
 						>
-							<Icon name="checkmark" /> Yes
-						</Button>
-					</Link>
-					<Link to="/">
-						<Button
-							color="red"
-							onClick={() => this.setState({ modalOpen: false })}
-						>
-							<Icon name="remove" /> No
+							<Icon name="checkmark" /> OK
 						</Button>
 					</Link>
 				</Modal.Actions>

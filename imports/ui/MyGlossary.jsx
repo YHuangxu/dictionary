@@ -46,15 +46,7 @@ class MyGlossary extends Component {
 
 	// to detect if the user can join a multiplayer challenge game
 	handleChallengeClick() {
-		const number = this.props.myWords.length;
-
-		if (number < 10) {
-			this.setState({
-				modalOpen: true
-			});
-		} else {
-			this.props.history.push("/challenge");
-		}
+		this.props.history.push("/challenge");
 	}
 
 	// render all words in the default list
@@ -69,7 +61,7 @@ class MyGlossary extends Component {
 					<p>
 						<span>Defination</span>: {word.content.definition}
 					</p>
-					<br/>
+					<br />
 					<p>
 						{word.content.example
 							? "Example: " + word.content.example
@@ -115,41 +107,13 @@ class MyGlossary extends Component {
 						</div>
 					) : (
 						<Button.Group>
-							<Modal
-								trigger={
-									<Button
-										positive
-										onClick={() =>
-											this.handleChallengeClick()
-										}
-									>
-										Challenge Game
-									</Button>
-								}
-								open={this.state.modalOpen}
+							<Button
+								positive
+								onClick={() => this.handleChallengeClick()}
 							>
-								<Header
-									icon="info circle"
-									content="Word Hard, Play Harder"
-								/>
-								<Modal.Content>
-									<p>
-										Your list has less than 10 words. Add
-										more to your list to join the challenge
-										game.
-									</p>
-								</Modal.Content>
-								<Modal.Actions>
-									<Button
-										color="green"
-										onClick={() =>
-											this.setState({ modalOpen: false })
-										}
-									>
-										<Icon name="checkmark" /> Alright 😔
-									</Button>
-								</Modal.Actions>
-							</Modal>
+								Challenge Game
+							</Button>
+
 							<Button.Or />
 							<Link to="/">
 								<Button>Back to main</Button>
@@ -172,13 +136,16 @@ export default withTracker(() => {
 
 	return {
 		user: !!Meteor.user(),
-		myWords: DefaultList.find({
-			userId: Meteor.userId()
-		}, {
-			sort: {
-				"searchTimes" : -1
+		myWords: DefaultList.find(
+			{
+				userId: Meteor.userId()
+			},
+			{
+				sort: {
+					searchTimes: -1
+				}
 			}
-		}).fetch(),
+		).fetch(),
 		ready: handle.ready()
 	};
 })(MyGlossary);
