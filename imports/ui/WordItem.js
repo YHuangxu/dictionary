@@ -14,7 +14,7 @@ class WordItem extends React.Component {
 		};
 	}
 
-	// add word to list
+	// add word to list / searchedWord / Questions
 	handleAddClick() {
 		if (this.props.user) {
 			this.setState({ justSaved: true });

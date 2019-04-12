@@ -12,7 +12,7 @@ import ChallengeQuiz from "../ui/ChallengeQuiz.jsx";
 
 const browserHistory = createBrowserHistory();
 
-const authPages = ["/glossary", "/challenge", "/challenge/gameplaying"];
+const authPages = ["/glossary", "/challenge", "/challenge/playing"];
 
 // Tracking auth status
 const authStatus = isLoggedin => {

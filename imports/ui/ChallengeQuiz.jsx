@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 
 import { Meteor } from "meteor/meteor";
 import NavigationBar from "./NavigationBar.jsx";
+import GoChallenge from "./GoChallenge.jsx";
 import Quiz from "./Quiz.jsx";
 import Result from "./Quiz.jsx";
 
@@ -10,6 +11,7 @@ import { withTracker } from "meteor/react-meteor-data";
 import { Container } from "semantic-ui-react";
 
 import { Questions } from "../api/Questions.js";
+
 
 class ChallengeQuiz extends React.Component {
 	constructor(props) {
@@ -67,7 +69,6 @@ class ChallengeQuiz extends React.Component {
 			setTimeout(() => this.setNextQuestion(), 300);
 		} else {
 			setTimeout(() => this.setResults(), 300);
-			console.log("result");
 		}
 
 	}
@@ -122,6 +123,9 @@ class ChallengeQuiz extends React.Component {
 		return (
 			<Container>
 				<NavigationBar />
+				<GoChallenge />
+				
+				<hr/>
 
 				{this.state.result}
 				{this.renderQuiz()}
