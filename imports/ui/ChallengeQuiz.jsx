@@ -67,7 +67,7 @@ class ChallengeQuiz extends React.Component {
 		this.setUserAnswer(event.currentTarget.value);
 
 		if (this.state.questionId < this.state.questionTotal) {
-			// setTimeout(() => this.setNextQuestion(), 300);
+			setTimeout(() => this.setNextQuestion(), 300);
 
 			console.log("next question");
 		} else {
@@ -76,20 +76,33 @@ class ChallengeQuiz extends React.Component {
 		}
 	}
 
+	setNextQuestion() {
+		const counter = this.state.counter + 1;
+		const questionId = this.state.questionId + 1;
+
+		this.setState({
+			counter: counter,
+			questionId: questionId,
+			question: this.props.questions[counter].question,
+			answerOptions: this.props.questions[counter].options,
+			answer: ""
+		});
+	}
+
 	setUserAnswer(answer) {
+		console.log(answer);
+
 		if (answer) {
 			this.setState({
-				answer: answer,
 				points: this.state.points + 1
 			});
-		} else {
-			this.setState({
-				answer: answer
-			});
+			// TODO: points cannot be updated
+			console.log(this.state.points);
 		}
 
-		console.log(!!this.state.answer);
-		console.log(this.state.points);
+		this.setState({
+			answer: answer
+		});
 	}
 
 	renderQuiz() {
