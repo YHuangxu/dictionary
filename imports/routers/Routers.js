@@ -7,8 +7,9 @@ import { Tracker } from "meteor/tracker";
 import App from "../ui/App.jsx";
 import NotFound from "../ui/NotFound.jsx";
 import MyGlossary from "../ui/MyGlossary.jsx";
-import ChallengeGame from "../ui/ChallengeGame.jsx";
-import ChallengeQuiz from "../ui/ChallengeQuiz.jsx";
+import ChallengePage1 from "../ui/ChallengePage1.jsx";
+import ChallengePage2 from "../ui/ChallengePage2.jsx";
+import WinnerBoard from "../ui/WinnerBoard.jsx";
 
 const browserHistory = createBrowserHistory();
 
@@ -35,9 +36,11 @@ export const renderRoutes = () => (
 
 			<Route exact path="/glossary" component={MyGlossary} />
 
-			<Route exact path="/challenge" component={ChallengeGame} />
+			<Route exact path="/challenge" component={ChallengePage1} />
 
-			<Route exact path="/challenge/playing" component={ChallengeQuiz} />
+			<Route exact path="/winnerboard" component={WinnerBoard} />
+
+			<Route exact path="/challenge/playing" component={ChallengePage2} />
 
 			<Route component={NotFound} />
 		</Switch>

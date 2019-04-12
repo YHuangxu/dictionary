@@ -32,15 +32,35 @@ Meteor.methods({
 		const game = Games.findOne({ gameStatus: "waiting" });
 
 		if (game === undefined) {
-
 			gameLogic.newGame();
 		} else if (
 			game !== undefined &&
 			game.player1 !== this.userId &&
 			game.player2 === ""
 		) {
-			
 			gameLogic.joinGame(game);
+		}
+	},
+
+	// update game status --- game over
+	// update gameWinner
+
+	"game.update"(userId) {
+		// remove all played game with this user
+		let game = Games.findOne({
+			gameStatus: "playing",
+			$or: [{ player1: Meteor.userId() }, { player2: Meteor.userId() }]
+		});
+
+		if (game !== undefined) {
+			Games.update(
+				{
+					_id: game._id
+				},
+				{
+					$set: { gameStatus: "gameover", gameWinner: userId }
+				}
+			);
 		}
 	}
 });

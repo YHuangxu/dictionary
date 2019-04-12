@@ -30,10 +30,6 @@ class ChallengeGame extends React.Component {
 		}
 	}
 
-	// modalCheck() {
-
-	// }
-
 	render() {
 		return (
 			<Container>
