@@ -32,7 +32,6 @@ class ChallengeQuiz extends React.Component {
 	componentDidUpdate(prevProps) {
 		// Typical usage (don't forget to compare props):
 		if (this.props.questions.length !== prevProps.questions.length) {
-			console.log(this.props.questions);
 			// shuffle options
 			const shuffledAnswerOptions = this.props.questions.map(question =>
 				this.shuffleArray(question.options)
@@ -62,18 +61,19 @@ class ChallengeQuiz extends React.Component {
 	}
 
 	handleAnswerSelected(event) {
-		console.log(event.currentTarget.value);
-
 		this.setUserAnswer(event.currentTarget.value);
 
 		if (this.state.questionId < this.state.questionTotal) {
 			setTimeout(() => this.setNextQuestion(), 300);
-
-			console.log("next question");
 		} else {
-			// setTimeout(() => this.setResults(this.getResults()), 300);
+			setTimeout(() => this.setResults(), 300);
 			console.log("result");
 		}
+
+	}
+	
+	setResults() {
+		this.setState({ result: "You got " + this.state.points + " points!"});
 	}
 
 	setNextQuestion() {
@@ -90,14 +90,10 @@ class ChallengeQuiz extends React.Component {
 	}
 
 	setUserAnswer(answer) {
-		console.log(answer);
-
-		if (answer) {
+		if (answer === "true") {
 			this.setState({
-				points: this.state.points + 1
+				points: this.state.points + 10
 			});
-			// TODO: points cannot be updated
-			console.log(this.state.points);
 		}
 
 		this.setState({
@@ -106,9 +102,6 @@ class ChallengeQuiz extends React.Component {
 	}
 
 	renderQuiz() {
-		console.log(this.props.questions);
-		console.log(this.state.question);
-
 		return (
 			<Quiz
 				question={this.state.question}
@@ -129,7 +122,10 @@ class ChallengeQuiz extends React.Component {
 		return (
 			<Container>
 				<NavigationBar />
-				{this.state.result ? this.renderResult() : this.renderQuiz()}
+
+				{this.state.result}
+				{this.renderQuiz()}
+				
 			</Container>
 		);
 	}
@@ -163,8 +159,6 @@ export default withTracker(() => {
 	let questions = Questions.find({}).fetch();
 
 	let randomQuestions = getRandomArrayElements(questions, 10);
-
-	console.log(randomQuestions);
 
 	return {
 		questions: randomQuestions,

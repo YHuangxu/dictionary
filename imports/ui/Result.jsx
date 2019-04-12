@@ -5,7 +5,6 @@ class Result extends React.Component {
 	render() {
 		return (
 			<div>
-				<h2>Result Component</h2>
 				<strong>{this.props.quizResult}</strong>!
 			</div>
 		);

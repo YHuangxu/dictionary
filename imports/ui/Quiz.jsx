@@ -4,7 +4,6 @@ import QuestionCount from "./QuestionCount";
 import AnswerOption from "./AnswerOption";
 
 class Quiz extends React.Component {
-
 	renderQuestion() {
 		return <h2 className="question">{this.props.question}</h2>;
 	}
