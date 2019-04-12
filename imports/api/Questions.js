@@ -7,7 +7,7 @@ import { allSearchedWords } from "./allSearchedWords.js";
 export const Questions = new Mongo.Collection("Questions");
 
 if (Meteor.isServer) {
-	// 随机拿10个，publish出去
+
 	Meteor.publish("Questions", function() {
 		return Questions.find();
 	});
@@ -29,6 +29,7 @@ Meteor.methods({
 		wordsSet.delete(word);
 		let uniquewords = Array.from(wordsSet);
 
+
 		let option1 =
 			uniquewords[Math.floor(Math.random() * uniquewords.length + 1) - 1];
 		let option2 =
@@ -46,6 +47,7 @@ Meteor.methods({
 			type: false,
 			content: option2
 		});
+
 
 		let wordDoc = Questions.findOne({
 			question: question

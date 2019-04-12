@@ -8,7 +8,7 @@ import App from "../ui/App.jsx";
 import NotFound from "../ui/NotFound.jsx";
 import MyGlossary from "../ui/MyGlossary.jsx";
 import ChallengeGame from "../ui/ChallengeGame.jsx";
-import Gaming from "../ui/Gaming.jsx";
+import ChallengeQuiz from "../ui/ChallengeQuiz.jsx";
 
 const browserHistory = createBrowserHistory();
 
@@ -37,7 +37,7 @@ export const renderRoutes = () => (
 
 			<Route exact path="/challenge" component={ChallengeGame} />
 
-			<Route exact path="/challenge/playing" component={Gaming} />
+			<Route exact path="/challenge/playing" component={ChallengeQuiz} />
 
 			<Route component={NotFound} />
 		</Switch>
